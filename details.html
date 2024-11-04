@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details</title>
+    <link rel="stylesheet" href="../maincss/details.css"> <!-- Link to CSS -->
+    <link rel="stylesheet" href="../maincss/nav.css">
+    <link rel="stylesheet" href="../maincss/footer.css">
+    <link rel="stylesheet" href="../maincss/scart.css">
+    <link rel="stylesheet" href="../maincss/meta.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=New+Amsterdam&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Arsenal+SC:ital,wght@0,400;0,700;1,400;1,700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=New+Amsterdam&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@10..48,800&family=Caprasimo&family=Inter:wght@700&family=Open+Sans:ital@1&family=Oswald:wght@200;700&family=Tilt+Prism&family=Ultra&family=VT323&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <section>
+        <!-- Main Navigation -->
+        <nav class="main-nav">
+           <!-- Menu Container with Menu Button -->
+            <div class="menu">
+                <a class="menu-button">
+                    <img src="../icons/bmenu.png" alt="Menu Icon">
+                    <p>Menu</p>
+                </a>
+            </div>
+
+            <!-- HTML Structure for the Pop-Up Menu -->
+            <div id="sideMenu" class="side-menu">
+                <button id="closeMenu" class="close-menu-button">✖ Close</button> <!-- Close button -->
+                <ul class="side-nav-list">
+                    <!-- Right-aligned navigation items listed first -->
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="donate.html">Donate</a></li> 
+
+                    <!-- Left-aligned navigation items listed after -->
+                    <li><a href="#">About Islam</a></li>
+                    <li><a href="#">Mosques near You</a></li>
+                    <li><a href="https://adlyonline.com/">Book Store</a></li>
+                </ul>
+            </div>
+
+
+            <!-- Left-aligned navigation items -->
+            <ul class="nav-left">
+                <li class="lai"><a href="#">About Islam</a></li>
+                <li class="may"><a href="#">Mosques near You</a></li>
+                <li><a href="https://adlyonline.com/">Book Store</a></li>
+            </ul>
+    
+            <!-- Logo in the center -->
+            <div class="nav-logo">
+                <a href="index.html">
+                    <img src="../logos/green.png" alt="Himran">
+                </a>
+            </div>
+    
+            <!-- Right-aligned navigation items -->
+            <ul class="nav-right">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="donate.html">Donate</a></li> 
+               
+            </ul>
+    
+            <!-- Cart Icon with Count -->
+            <!-- Navbar Cart Icon -->
+            <!-- Navbar Cart Icon -->
+            <div class="nav-icons">
+                <div class="cart-icon">
+                    <img src="../icons/scart.png" alt="Cart">
+                    <span id="cart-count">0</span> <!-- Cart count that updates dynamically -->
+                </div>
+            </div>
+
+
+
+        </nav>
+    </section>
+
+    <div class="product-detail-container">
+        <div id="productDetails"></div> <!-- Product details will be loaded here -->
+    </div>
+
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <ul>
+                    <li>Email: contact@hassanshop.com</li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Follow Us</h4>
+                <ul>
+                    <li><a href="#">Facebook</a></li>
+                    <li><a href="#">Twitter</a></li>
+                    <li><a href="#">Instagram</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Hassan Shop. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../mainjs/details.js"></script> <!-- Link to JS -->
+    <script src="../mainjs/nav.js"></script>
+</body>
+</html>
+

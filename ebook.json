@@ -1,0 +1,58 @@
+[
+    {
+        "title": "99 Names of Allah",
+        "price": 200,
+        "image": "../bookcovers/99names.png",
+        "pdf": "../pdf/99.pdf",
+        "description": "An enlightening guide to the beautiful 99 names of Allah, exploring their meanings and significance."
+    },
+    {
+        "title": "HTML & CSS for Beginners",
+        "price": 18500,
+        "image": "../images/hulu.png",
+        "pdf": "../pdf/html_css_beginners.pdf",
+        "description": "A comprehensive guide for beginners to learn the essentials of HTML and CSS for web development."
+    },
+    {
+        "title": "Advanced Python Programming",
+        "price": 377000,
+        "image": "../images/hirsu.png",
+        "pdf": "../pdf/advanced_python.pdf",
+        "description": "Master advanced Python programming techniques and concepts to take your skills to the next level."
+    },
+    {
+        "title": "E-Commerce Website Development",
+        "price": 38500,
+        "image": "../images/galaxy.jpg",
+        "pdf": "../pdf/ecommerce_development.pdf",
+        "description": "Step-by-step guide to building a successful e-commerce website, covering essential development skills."
+    },
+    {
+        "title": "hello9 Names of Allah",
+        "image": "../images/rain_16x9.jpg",
+        "pdf": "../pdf/99.pdf",
+        "description": "An exploration of the 99 names of Allah, providing a deeper understanding of each name's significance."
+    },
+    {
+        "title": "Only Allah is god",
+        "price": 18500,
+        "image": "../images/ichi.jpg",
+        "pdf": "../pdf/html_css_beginners.pdf",
+        "description": "A spiritual book emphasizing the oneness of Allah, offering insights into Islamic beliefs."
+    },
+    {
+        "title": "Advanced Python Programming",
+        "price": 377000,
+        "image": "../images/hello.jpeg",
+        "pdf": "../pdf/advanced_python.pdf",
+        "description": "Advanced topics in Python programming for experienced developers looking to deepen their expertise."
+    },
+    {
+        "title": "E-Commerce Website Development",
+        "price": 38500,
+        "image": "../images/Eren_Paths.jpg",
+        "pdf": "../pdf/ecommerce_development.pdf",
+        "description": "Detailed guide on creating an e-commerce website, from planning to deployment."
+    }
+  ]
+  

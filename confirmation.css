@@ -1,0 +1,91 @@
+/* Confirmation Section Container */
+.confirmation-container {
+    width: 80%;
+    max-width: 800px;
+    background-color: #fff;
+    padding: 30px;
+    margin: 100px auto; /* Center the container horizontally and add space from the top */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Add some shadow for a cleaner look */
+    border-radius: 10px;
+    text-align: center; /* Center all text inside the container */
+    font-family: 'Montserrat', sans-serif; /* Font style */
+}
+
+/* Header and Title */
+.confirmation-container h2 {
+    font-size: 2.5em;
+    color: #4CAF50; /* Greenish color for success message */
+    margin-bottom: 20px;
+}
+
+.confirmation-container p {
+    font-size: 1.2em;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.confirmation-container h3 {
+    font-size: 1.75em;
+    margin-top: 20px;
+    color: #555;
+}
+
+/* Order Summary List */
+.confirmation-container ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.confirmation-container ul li {
+    font-size: 1.1em;
+    padding: 8px;
+    border-bottom: 1px solid #eee;
+}
+
+.confirmation-container ul li:last-child {
+    border-bottom: none;
+}
+
+/* Order Total */
+#orderTotal {
+    font-size: 17px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Shipping Information */
+.confirmation-container p span {
+    font-weight: bold;
+}
+
+/* Continue Shopping Button */
+.continue-button {
+    display: inline-block;
+    padding: 12px 20px;
+    background-color: #4CAF50;
+    color: white;
+    text-decoration: none;
+    font-size: 1.2em;
+    border-radius: 5px;
+    margin-top: 25px;
+}
+
+.continue-button:hover {
+    background-color: #45a049; /* Darker green on hover */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .confirmation-container {
+        width: 95%;
+        padding: 20px;
+    }
+
+    .confirmation-container h2 {
+        font-size: 2em;
+    }
+
+    .confirmation-container p, .confirmation-container ul li {
+        font-size: 1em;
+    }
+}
