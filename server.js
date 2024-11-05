@@ -15,7 +15,7 @@ app.use(bodyParser.json());
 
 // Place CORS middleware setup right after importing the 'cors' module and before defining routes
 app.use(cors({
-    origin: ['http://127.0.0.1:5501', 'http://localhost:5500']
+    origin: ['http://127.0.0.1:5501', 'http://localhost:5500', 'https://imranfaith.com']
 }));
 
 // MySQL connection using environment variables
@@ -54,14 +54,18 @@ app.get('/get-emailjs-keys', (req, res) => {
     });
 });
 
-// Fetch products from MySQL
+// Fetch all products from MySQL
 app.get('/products', (req, res) => {
     db.query('SELECT * FROM products', (err, results) => {
-        if (err) throw err;
+        if (err) {
+            console.error('Error fetching products:', err);
+            return res.status(500).json({ error: 'Error fetching products' });
+        }
         res.json(results);
     });
 });
 
+// Fetch a single product by ID
 app.get('/products/:id', (req, res) => {
     const productId = req.params.id;
 
@@ -69,11 +73,11 @@ app.get('/products/:id', (req, res) => {
     db.query(query, [productId], (err, results) => {
         if (err) {
             console.error('Error fetching product:', err);
-            return res.status(500).send('Error fetching product');
+            return res.status(500).json({ error: 'Error fetching product' });
         }
 
         if (results.length === 0) {
-            return res.status(404).send('Product not found');
+            return res.status(404).json({ error: 'Product not found' });
         }
 
         res.json(results[0]); // Return the first product found
@@ -101,7 +105,7 @@ app.post('/create-payment-intent', async (req, res) => {
 });
 
 // Handle successful payment and save to MySQL (Optional)
-app.post('/payment-success', async (req, res) => {
+app.post('/payment-success', (req, res) => {
     const { paymentId, name, email, phone, address, products, totalAmount } = req.body;
 
     // Insert the payment details into the MySQL database
@@ -111,9 +115,9 @@ app.post('/payment-success', async (req, res) => {
     db.query(query, values, (err, results) => {
         if (err) {
             console.error('Error saving payment details to MySQL:', err);
-            res.status(500).send('Error saving payment details');
+            res.status(500).json({ error: 'Error saving payment details' });
         } else {
-            res.send('Payment details saved successfully');
+            res.json({ message: 'Payment details saved successfully' });
         }
     });
 });
