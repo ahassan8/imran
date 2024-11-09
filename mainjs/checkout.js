@@ -3,7 +3,7 @@ let paymentCompleted = false; // Track payment completion
 let paymentMethod = ''; // Store payment method
 
 // Load cart items and calculate total on page load
-window.onload = function () {
+window.onload = async function () {
     const cartItemsContainer = document.getElementById('cartItemsContainer');
     let subtotalAmount = 0;
 
@@ -99,7 +99,18 @@ document.getElementById('confirmPurchaseButton').addEventListener('click', async
             return;
         }
 
-        await window.processStripePayment(totalAmount); // Trigger Stripe payment function from stripe.js
+        // Call your server's endpoint to create a Stripe payment intent
+        const response = await fetch('https://imranfaith.com/create-payment-intent', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ amount: totalAmount * 100 }) // Convert dollars to cents
+        });
+
+        const { clientSecret } = await response.json();
+        await window.processStripePayment(clientSecret); // Process payment with the retrieved clientSecret
+
         await sendEmailWithUserDetails(orderID, cartItems); // Send email with Order ID and cartItems
         storeOrderSummary(orderID); // Store order details before clearing the cart
         clearCartAndRedirect(); // Clear the cart and redirect to confirmation page
@@ -174,6 +185,7 @@ function clearError(input) {
 
 // Clear cart and redirect to confirmation page
 function clearCartAndRedirect() {
+    localStorage.removeItem('cart');
     window.location.href = 'confirmation.html';
 }
 
