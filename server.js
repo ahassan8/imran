@@ -7,7 +7,7 @@ const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);  // Use secret 
 const bodyParser = require('body-parser'); // For handling JSON payloads
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5001;
 
 // Middleware for serving static files and parsing JSON bodies
 app.use(express.static('main'));
