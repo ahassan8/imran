@@ -14,7 +14,7 @@ updateCartCount();
 
 // Function to fetch and render products from MySQL database
 function fetchAndRenderProducts() {
-    fetch('https://imranfaith.com/products')
+    fetch('https://imranfaith.com/products') // Fetch products from live server
         .then(response => response.json())
         .then(data => {
             const productContainer = document.getElementById('productContainer');
