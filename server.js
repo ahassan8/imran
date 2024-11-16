@@ -1,39 +1,23 @@
 require('dotenv').config(); // Load environment variables
 
 const express = require('express');
-const mysql = require('mysql2');
 const cors = require('cors');
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY); // Use secret key from .env
 const bodyParser = require('body-parser'); // For handling JSON payloads
 
 const app = express();
-const PORT = process.env.PORT || 5001;
+const PORT = process.env.PORT || 5000;
 
 // Middleware for serving static files and parsing JSON bodies
 app.use(express.static('main'));
 app.use(bodyParser.json());
 
 // Set up CORS to allow requests from your live domain
-app.use(cors({
-    origin: ['https://imranfaith.com']
-}));
-
-// MySQL connection using environment variables
-const db = mysql.createConnection({
-    host: process.env.MYSQL_HOST,
-    user: process.env.MYSQL_USER,
-    password: process.env.MYSQL_PASSWORD,
-    database: process.env.MYSQL_DATABASE
-});
-
-// Connect to the MySQL database
-db.connect(err => {
-    if (err) {
-        console.error('Error connecting to MySQL:', err);
-        return;
-    }
-    console.log('Connected to MySQL');
-});
+app.use(
+    cors({
+        origin: ['https://imranfaith.com', 'https://api.imranfaith.com'], // Allow frontend and API subdomain
+    })
+);
 
 // Route to securely send Stripe Publishable Key to the front-end
 app.get('/get-stripe-publishable-key', (req, res) => {
@@ -50,37 +34,7 @@ app.get('/get-emailjs-keys', (req, res) => {
     res.json({
         publicKey: process.env.EMAILJS_PUBLIC_KEY,
         serviceId: process.env.EMAILJS_SERVICE_ID,
-        templateId: process.env.EMAILJS_TEMPLATE_ID
-    });
-});
-
-// Fetch all products from MySQL
-app.get('/products', (req, res) => {
-    db.query('SELECT * FROM products', (err, results) => {
-        if (err) {
-            console.error('Error fetching products:', err);
-            return res.status(500).json({ error: 'Error fetching products' });
-        }
-        res.json(results);
-    });
-});
-
-// Fetch a single product by ID
-app.get('/products/:id', (req, res) => {
-    const productId = req.params.id;
-
-    const query = 'SELECT * FROM products WHERE id = ?';
-    db.query(query, [productId], (err, results) => {
-        if (err) {
-            console.error('Error fetching product:', err);
-            return res.status(500).json({ error: 'Error fetching product' });
-        }
-
-        if (results.length === 0) {
-            return res.status(404).json({ error: 'Product not found' });
-        }
-
-        res.json(results[0]); // Return the first product found
+        templateId: process.env.EMAILJS_TEMPLATE_ID,
     });
 });
 
@@ -104,25 +58,25 @@ app.post('/create-payment-intent', async (req, res) => {
     }
 });
 
-// Handle successful payment and save to MySQL (Optional)
+// Handle successful payment (Optional - Store in JSON or other persistence layer)
 app.post('/payment-success', (req, res) => {
     const { paymentId, name, email, phone, address, products, totalAmount } = req.body;
 
-    // Insert the payment details into the MySQL database
-    const query = 'INSERT INTO orders (paymentId, name, email, phone, address, products, totalAmount) VALUES (?, ?, ?, ?, ?, ?, ?)';
-    const values = [paymentId, name, email, phone, address, JSON.stringify(products), totalAmount];
-
-    db.query(query, values, (err, results) => {
-        if (err) {
-            console.error('Error saving payment details to MySQL:', err);
-            res.status(500).json({ error: 'Error saving payment details' });
-        } else {
-            res.json({ message: 'Payment details saved successfully' });
-        }
+    // Simulate saving payment details
+    console.log('Payment Successful:', {
+        paymentId,
+        name,
+        email,
+        phone,
+        address,
+        products,
+        totalAmount,
     });
+
+    res.json({ message: 'Payment details received successfully' });
 });
 
 // Start server
 app.listen(PORT, () => {
-    console.log(`Server running on https://imranfaith.com:${PORT}`);
+    console.log(`Server running on http://localhost:${PORT}`);
 });
