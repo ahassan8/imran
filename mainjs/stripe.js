@@ -68,7 +68,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         window.processStripePayment = async function (totalAmount) {
             try {
                 // Step 1: Create a Payment Intent on the server
-                const response = await fetch('http://127.0.0.1:5000/create-payment-intent', {
+                const response = await fetch('https://api.imranfaith.com/create-payment-intent', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ amount: Math.round(totalAmount * 100) }) // Amount in cents
