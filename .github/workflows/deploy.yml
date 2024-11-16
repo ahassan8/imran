@@ -1,1 +1,36 @@
+name: Deploy Application
+
+on:
+  push:
+    branches:
+      - main  # Trigger workflow when changes are pushed to the 'main' branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Create .env file
+        run: |
+          echo EMAILJS_PUBLIC_KEY=${{ secrets.EMAILJS_PUBLIC_KEY }} >> .env
+          echo EMAILJS_SERVICE_ID=${{ secrets.EMAILJS_SERVICE_ID }} >> .env
+          echo EMAILJS_TEMPLATE_ID=${{ secrets.EMAILJS_TEMPLATE_ID }} >> .env
+          echo PAYPAL_CLIENT_ID=${{ secrets.PAYPAL_CLIENT_ID }} >> .env
+          echo PAYPAL_SECRET=${{ secrets.PAYPAL_SECRET }} >> .env
+          echo STRIPE_PUBLISHABLE_KEY=${{ secrets.STRIPE_PUBLISHABLE_KEY }} >> .env
+          echo STRIPE_SECRET_KEY=${{ secrets.STRIPE_SECRET_KEY }} >> .env
+
+      - name: Deploy to server
+        run: echo "Deploy script goes here"
 
