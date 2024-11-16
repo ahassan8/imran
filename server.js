@@ -1,9 +1,9 @@
-require('dotenv').config();  // Load environment variables
+require('dotenv').config(); // Load environment variables
 
 const express = require('express');
 const mysql = require('mysql2');
 const cors = require('cors');
-const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);  // Use secret key from .env
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY); // Use secret key from .env
 const bodyParser = require('body-parser'); // For handling JSON payloads
 
 const app = express();
@@ -124,5 +124,5 @@ app.post('/payment-success', (req, res) => {
 
 // Start server
 app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
+    console.log(`Server running on https://imranfaith.com:${PORT}`);
 });
