@@ -76,7 +76,7 @@ app.post('/payment-success', (req, res) => {
     res.json({ message: 'Payment details received successfully' });
 });
 
-// Start server
-app.listen(PORT, () => {
-    console.log(`Server running on http://localhost:${PORT}`);
+// Start server and bind to 0.0.0.0 to make it accessible via the internet
+app.listen(PORT, '0.0.0.0', () => {
+    console.log(`Server running and accessible on port ${PORT}`);
 });
