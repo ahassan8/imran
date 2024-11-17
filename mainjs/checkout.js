@@ -100,7 +100,7 @@ document.getElementById('confirmPurchaseButton').addEventListener('click', async
         }
 
         // Call your server's endpoint to create a Stripe payment intent
-        const response = await fetch('https://imranfaith.com/create-payment-intent', {
+        const response = await fetch('https://api.imranfaith.com/create-payment-intent', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
