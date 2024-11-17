@@ -3,8 +3,8 @@
         "id": 1,
         "category": "Books",
         "title": "Jesus is Muslim, yes",
-        "price": 4004, 
-        "stock": 78,
+        "price": 44, 
+        "stock": 8,
         "description": "A thought-provoking book on spirituality and interfaith dialogue.",
         "image": "galaxy.jpg"
     },
@@ -12,8 +12,8 @@
         "id": 2,
         "category": "Books",
         "title": "This is a Book with no Error",
-        "price": 1255,
-        "stock": 0,
+        "price": 155,
+        "stock": 3,
         "description": "Coming soon - a book about overcoming challenges.",
         "image": "eren_paths.jpg"
     },
