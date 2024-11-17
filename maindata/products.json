@@ -2,7 +2,7 @@
     {
         "id": 1,
         "category": "Books",
-        "title": "Jesus is Muslim",
+        "title": "Jesus is Muslim, yes",
         "price": 4004, 
         "stock": 78,
         "description": "A thought-provoking book on spirituality and interfaith dialogue.",
@@ -11,7 +11,7 @@
     {
         "id": 2,
         "category": "Books",
-        "title": "This is a Book with Error",
+        "title": "This is a Book with no Error",
         "price": 1255,
         "stock": 0,
         "description": "Coming soon - a book about overcoming challenges.",
