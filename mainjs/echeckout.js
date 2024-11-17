@@ -39,8 +39,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Fetch Stripe and EmailJS keys from the server
     Promise.all([
-        fetch('https://imranfaith.com/get-stripe-publishable-key').then(response => response.json()),
-        fetch('https://imranfaith.com/get-emailjs-keys').then(response => response.json())
+        fetch('https://api.imranfaith.com/get-stripe-publishable-key').then(response => response.json()),
+        fetch('https://api.imranfaith.com/get-emailjs-keys').then(response => response.json())
     ]).then(([stripeData, emailKeysData]) => {
         stripePublicKey = stripeData.publishableKey;
         emailjsPublicKey = emailKeysData.publicKey;
