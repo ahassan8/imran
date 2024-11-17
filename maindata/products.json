@@ -4,7 +4,7 @@
         "category": "Books",
         "title": "Jesus is Muslim",
         "price": 4334, 
-        "stock": 10,
+        "stock": 1078,
         "description": "A thought-provoking book on spirituality and interfaith dialogue.",
         "image": "galaxy.jpg"
     },
@@ -13,7 +13,7 @@
         "category": "Books",
         "title": "This is a Book with Error",
         "price": 1255,
-        "stock": 20,
+        "stock": 0,
         "description": "Coming soon - a book about overcoming challenges.",
         "image": "eren_paths.jpg"
     },
@@ -22,7 +22,7 @@
         "category": "Car Decals",
         "title": "Hello",
         "price": 500,
-        "stock": 15,
+        "stock": 185,
         "description": "A simple yet stylish car decal.",
         "image": "ichi.jpg"
     },
@@ -31,7 +31,7 @@
         "category": "Accessories",
         "title": "New",
         "price": 6500,
-        "stock": 8,
+        "stock": 88,
         "description": "A premium home accessory.",
         "image": "hulu.png"
     },
@@ -40,7 +40,7 @@
         "category": "Accessories",
         "title": "Transition",
         "price": 3400,
-        "stock": 12,
+        "stock": 1772,
         "description": "A decorative transition piece for your home.",
         "image": "REALRAIN.png"
     },
@@ -49,7 +49,7 @@
         "category": "Car Decals",
         "title": "Six",
         "price": 4599,
-        "stock": 5,
+        "stock": 77865,
         "description": "A car decal for the number six enthusiasts.",
         "image": "hirsu.png"
     }
