@@ -39,8 +39,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Fetch Stripe and EmailJS keys from the server
     Promise.all([
-        fetch('http://localhost:5000/get-stripe-publishable-key').then(response => response.json()),
-        fetch('http://localhost:5000/get-emailjs-keys').then(response => response.json())
+        fetch('https://imranfaith.com/get-stripe-publishable-key').then(response => response.json()),
+        fetch('https://imranfaith.com/get-emailjs-keys').then(response => response.json())
     ]).then(([stripeData, emailKeysData]) => {
         stripePublicKey = stripeData.publishableKey;
         emailjsPublicKey = emailKeysData.publicKey;
@@ -78,7 +78,7 @@ document.addEventListener("DOMContentLoaded", function() {
             }
 
             try {
-                const paymentIntentResponse = await fetch('http://localhost:5000/create-payment-intent', {
+                const paymentIntentResponse = await fetch('https://imranfaith.com/create-payment-intent', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ amount: ebookPriceInCents })
@@ -122,7 +122,7 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     // PayPal Button integration
-    fetch('http://localhost:5000/get-paypal-client-id')
+    fetch('https://imranfaith.com/get-paypal-client-id')
         .then(response => response.json())
         .then(data => {
             const paypalClientId = data.clientId;
