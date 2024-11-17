@@ -4,7 +4,7 @@ let emailJsServiceId, emailJsTemplateId, emailJsPublicKey;
 document.addEventListener("DOMContentLoaded", async function () {
     try {
         // Fetch EmailJS keys from the server
-        const response = await fetch('https://imranfaith.com/get-emailjs-keys');
+        const response = await fetch('https://api.imranfaith.com/get-emailjs-keys'); // Ensure you're using the correct subdomain
 
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 });
 
 // Add keypress validation for phone number input
-document.getElementById('user_phone').addEventListener('keypress', function(event) {
+document.getElementById('user_phone').addEventListener('keypress', function (event) {
     // Prevent any non-numeric characters
     if (!/[0-9]/.test(event.key)) {
         event.preventDefault();
@@ -36,7 +36,7 @@ document.getElementById('user_phone').addEventListener('keypress', function(even
 });
 
 // Handle form submission
-document.getElementById('contact-form').addEventListener('submit', function(event) {
+document.getElementById('contact-form').addEventListener('submit', function (event) {
     event.preventDefault();
 
     // Get form field values
@@ -64,8 +64,8 @@ document.getElementById('contact-form').addEventListener('submit', function(even
     // Ensure all fields are filled out
     if (userName === '' || userEmail === '' || userPhone === '' || userMessage === '') {
         document.getElementById('status').textContent = "Please fill out all fields before submitting.";
-        document.getElementById('status').style.color = "red";  // Display error in red
-        return;  // Stop form submission if fields are empty
+        document.getElementById('status').style.color = "red"; // Display error in red
+        return; // Stop form submission if fields are empty
     }
 
     // Send form via EmailJS with dynamically fetched serviceId and templateId
@@ -74,17 +74,17 @@ document.getElementById('contact-form').addEventListener('submit', function(even
         user_email: userEmail,
         user_phone: userPhone,
         message: userMessage
-    }).then(function() {
+    }).then(function () {
         // Display success message
         document.getElementById('status').textContent = "Your message has been sent successfully!";
-        document.getElementById('status').style.color = "green";  // Display success in green
+        document.getElementById('status').style.color = "green"; // Display success in green
 
         // Clear the form fields
         document.getElementById('contact-form').reset();
-    }, function(error) {
+    }, function (error) {
         // Display error message
         console.error("Failed to send email", error);
         document.getElementById('status').textContent = "Failed to send message, please try again.";
-        document.getElementById('status').style.color = "red";  // Display error in red
+        document.getElementById('status').style.color = "red"; // Display error in red
     });
 });
