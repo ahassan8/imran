@@ -4,29 +4,22 @@ let cart = JSON.parse(localStorage.getItem('cart')) || {};
 // Update cart count when loading the page
 updateCartCount();
 
-// Function to fetch and render products from MySQL database
+// Function to fetch and render products from products.json
 function fetchAndRenderProducts() {
-    fetch('// Initialize cart from localStorage or set to an empty object if not present
-let cart = JSON.parse(localStorage.getItem('cart')) || {};
-
-// Update cart count when loading the page
-updateCartCount();
-
-// Function to fetch and render products from MySQL database
-function fetchAndRenderProducts() {
-    fetch('https://imranfaith.com/products') // Fetch products from live server
+    fetch('./maindata/products.json') // Adjust the path if necessary
         .then(response => response.json())
         .then(data => {
             const productContainer = document.getElementById('productContainer');
             productContainer.innerHTML = ''; // Clear the previous product display
 
-            // Create category containers
+            // Define categories
             const categories = ['Books', 'Car Decals', 'Accessories'];
+
+            // Create sections for each category
             categories.forEach(category => {
-                // Filter products by category
                 const filteredProducts = data.filter(product => product.category === category);
 
-                // Only create and append the category section if there are products
+                // Only create a section if there are products in the category
                 if (filteredProducts.length > 0) {
                     const categorySection = document.createElement('section');
                     categorySection.classList.add('category-section');
@@ -35,10 +28,8 @@ function fetchAndRenderProducts() {
                     categoryHeader.textContent = category;
                     categorySection.appendChild(categoryHeader);
 
+                    // Add products to the category section
                     filteredProducts.forEach(product => {
-                        const stockAvailable = product.stock > 0;
-
-                        // Create product card
                         const productDiv = document.createElement('div');
                         productDiv.classList.add('product-card');
 
@@ -55,11 +46,11 @@ function fetchAndRenderProducts() {
                                 <p class="product-available">${product.stock} available</p>
                                 <p class="product-price">$${(product.price / 100).toFixed(2)}</p>
                                 <div class="button-container">
-                                    <button class="atcart" id="addToCart-${product.id}" 
+                                    <button class="atcart" 
                                         onclick="addToCart(${product.id}, ${product.price}, '${product.title}', '${product.image}', ${product.stock})"
-                                        ${stockAvailable ? '' : 'disabled'}
-                                        style="${stockAvailable ? '' : 'background-color: grey; cursor: not-allowed;'}">
-                                        Add to cart
+                                        ${product.stock > 0 ? '' : 'disabled'}
+                                        style="${product.stock > 0 ? '' : 'background-color: grey; cursor: not-allowed;'}">
+                                        Add to Cart
                                     </button>
                                     <button class="view-cart" id="viewCart-${product.id}" 
                                         onclick="toggleCartVisibility()" 
@@ -72,8 +63,7 @@ function fetchAndRenderProducts() {
                         categorySection.appendChild(productDiv);
                     });
 
-                    // Append category section to product container
-                    productContainer.appendChild(categorySection);
+                    productContainer.appendChild(categorySection); // Append category section
                 }
             });
         })
@@ -88,15 +78,13 @@ function addToCart(productId, productPrice, productTitle, productImage, availabl
     const quantity = 1; // Default quantity to add
 
     if (cart[productId]) {
-        // Check if adding the item exceeds stock
         if (cart[productId].quantity + quantity <= availableStock) {
             cart[productId].quantity += quantity; // Increment quantity
         } else {
             alert(`Only ${availableStock} items in stock. Cannot add more.`);
-            return; // Stop further execution if stock limit is reached
+            return;
         }
     } else {
-        // Add new item to the cart
         cart[productId] = {
             quantity,
             price: productPrice,
@@ -106,15 +94,10 @@ function addToCart(productId, productPrice, productTitle, productImage, availabl
         };
     }
 
-    // Save the updated cart to localStorage
-    localStorage.setItem('cart', JSON.stringify(cart));
-    console.log('Product added to cart:', cart);
+    localStorage.setItem('cart', JSON.stringify(cart)); // Save updated cart
+    updateCartCount(); // Update cart count
 
-    // Update cart count
-    updateCartCount();
-
-    // Show the "View Cart" button for the product
-    document.getElementById(`viewCart-${productId}`).style.display = 'inline-block';
+    document.getElementById(`viewCart-${productId}`).style.display = 'inline-block'; // Show "View Cart" button
 }
 
 // Function to update the cart count in the navbar
@@ -123,204 +106,30 @@ function updateCartCount() {
     document.getElementById('cart-count').textContent = cartCount;
 }
 
-// Function to toggle the cart div visibility
+// Function to toggle the cart visibility
 function toggleCartVisibility() {
     const cartContainer = document.getElementById('cartContainer');
     const overlay = document.getElementById('overlay');
-    const footer = document.querySelector('.site-footer'); // Select the footer
 
-    // Toggle cart and overlay display
     if (cartContainer.style.display === 'none' || cartContainer.style.display === '') {
-        cartContainer.style.display = 'block'; // Show the cart container
-        overlay.style.display = 'block'; // Show the overlay
-        document.body.style.overflow = 'hidden'; // Disable page scroll
-        footer.style.display = 'none'; // Hide the footer when cart is open
+        cartContainer.style.display = 'block';
+        overlay.style.display = 'block';
+        document.body.style.overflow = 'hidden'; // Disable scrolling
     } else {
-        cartContainer.style.display = 'none'; // Hide the cart container
-        overlay.style.display = 'none'; // Hide the overlay
-        document.body.style.overflow = 'auto'; // Enable page scroll
-        footer.style.display = 'block'; // Show the footer again
+        cartContainer.style.display = 'none';
+        overlay.style.display = 'none';
+        document.body.style.overflow = 'auto'; // Enable scrolling
     }
-
-    // Refresh the cart items to reflect the latest changes
-    renderCartItems();
 }
 
-// Function to remove an item from the cart
-function removeItem(productId) {
-    if (cart[productId]) {
-        delete cart[productId]; // Remove item from cart
-        localStorage.setItem('cart', JSON.stringify(cart)); // Save updated cart
-        updateCartCount(); // Update cart count
-        fetchAndRenderProducts(); // Refresh product display
-    }
+// Function to reset the cart
+function resetCart() {
+    cart = {}; // Clear the cart
+    localStorage.setItem('cart', JSON.stringify(cart)); // Save empty cart
+    updateCartCount(); // Update cart count
+    fetchAndRenderProducts(); // Re-render products
+    console.log('Cart has been reset.');
 }
 
 // Add event listener to the reset button
 document.getElementById('resetCartButton').addEventListener('click', resetCart);
-
-// Function to reset the entire cart
-function resetCart() {
-    cart = {}; // Clear the cart object
-    localStorage.setItem('cart', JSON.stringify(cart)); // Save empty cart to localStorage
-    updateCartCount(); // Update the cart count display
-    console.log('Cart has been reset.');
-
-    // Optionally, re-render the products to reflect the reset state
-    fetchAndRenderProducts();
-}
-/products')
-        .then(response => response.json())
-        .then(data => {
-            const productContainer = document.getElementById('productContainer');
-            productContainer.innerHTML = ''; // Clear the previous product display
-
-            // Create category containers
-            const categories = ['Books', 'Car Decals', 'Accessories'];
-            categories.forEach(category => {
-                // Filter products by category
-                const filteredProducts = data.filter(product => product.category === category);
-
-                // Only create and append the category section if there are products
-                if (filteredProducts.length > 0) {
-                    const categorySection = document.createElement('section');
-                    categorySection.classList.add('category-section');
-
-                    const categoryHeader = document.createElement('h2');
-                    categoryHeader.textContent = category;
-                    categorySection.appendChild(categoryHeader);
-
-                    filteredProducts.forEach(product => {
-                        const stockAvailable = product.stock > 0;
-
-                        // Create product card
-                        const productDiv = document.createElement('div');
-                        productDiv.classList.add('product-card');
-
-                        productDiv.innerHTML = `
-                            <div class="product-image-container">
-                                <a href="../mainhtml/details.html?id=${product.id}">
-                                    <img src="../images/${product.image}" alt="${product.title}" class="product-image">
-                                </a>
-                            </div>
-                            <div class="product-details">
-                                <a href="../mainhtml/details.html?id=${product.id}" class="product-title-link">
-                                    <h4 class="product-title">${product.title}</h4>
-                                </a>
-                                <p class="product-available">${product.stock} available</p>
-                                <p class="product-price">$${(product.price / 100).toFixed(2)}</p>
-                                <div class="button-container">
-                                    <button class="atcart" id="addToCart-${product.id}" 
-                                        onclick="addToCart(${product.id}, ${product.price}, '${product.title}', '${product.image}', ${product.stock})"
-                                        ${stockAvailable ? '' : 'disabled'}
-                                        style="${stockAvailable ? '' : 'background-color: grey; cursor: not-allowed;'}">
-                                        Add to cart
-                                    </button>
-                                    <button class="view-cart" id="viewCart-${product.id}" 
-                                        onclick="toggleCartVisibility()" 
-                                        style="display: none;">
-                                        View Cart
-                                    </button>
-                                </div>
-                            </div>
-                        `;
-                        categorySection.appendChild(productDiv);
-                    });
-
-                    // Append category section to product container
-                    productContainer.appendChild(categorySection);
-                }
-            });
-        })
-        .catch(error => console.error('Error fetching products:', error));
-}
-
-// Call fetchAndRenderProducts on page load
-fetchAndRenderProducts();
-
-// Function to add items to the cart
-function addToCart(productId, productPrice, productTitle, productImage, availableStock) {
-    const quantity = 1; // Default quantity to add
-
-    if (cart[productId]) {
-        // Check if adding the item exceeds stock
-        if (cart[productId].quantity + quantity <= availableStock) {
-            cart[productId].quantity += quantity; // Increment quantity
-        } else {
-            alert(`Only ${availableStock} items in stock. Cannot add more.`);
-            return; // Stop further execution if stock limit is reached
-        }
-    } else {
-        // Add new item to the cart
-        cart[productId] = {
-            quantity,
-            price: productPrice,
-            title: productTitle,
-            image: productImage,
-            stock: availableStock
-        };
-    }
-
-    // Save the updated cart to localStorage
-    localStorage.setItem('cart', JSON.stringify(cart));
-    console.log('Product added to cart:', cart);
-
-    // Update cart count
-    updateCartCount();
-
-    // Show the "View Cart" button for the product
-    document.getElementById(`viewCart-${productId}`).style.display = 'inline-block';
-}
-
-// Function to update the cart count in the navbar
-function updateCartCount() {
-    const cartCount = Object.values(cart).reduce((acc, item) => acc + item.quantity, 0);
-    document.getElementById('cart-count').textContent = cartCount;
-}
-
-// Function to toggle the cart div visibility
-function toggleCartVisibility() {
-    const cartContainer = document.getElementById('cartContainer');
-    const overlay = document.getElementById('overlay');
-    const footer = document.querySelector('.site-footer'); // Select the footer
-
-    // Toggle cart and overlay display
-    if (cartContainer.style.display === 'none' || cartContainer.style.display === '') {
-        cartContainer.style.display = 'block'; // Show the cart container
-        overlay.style.display = 'block'; // Show the overlay
-        document.body.style.overflow = 'hidden'; // Disable page scroll
-        footer.style.display = 'none'; // Hide the footer when cart is open
-    } else {
-        cartContainer.style.display = 'none'; // Hide the cart container
-        overlay.style.display = 'none'; // Hide the overlay
-        document.body.style.overflow = 'auto'; // Enable page scroll
-        footer.style.display = 'block'; // Show the footer again
-    }
-
-    // Refresh the cart items to reflect the latest changes
-    renderCartItems();
-}
-
-// Function to remove an item from the cart
-function removeItem(productId) {
-    if (cart[productId]) {
-        delete cart[productId]; // Remove item from cart
-        localStorage.setItem('cart', JSON.stringify(cart)); // Save updated cart
-        updateCartCount(); // Update cart count
-        fetchAndRenderProducts(); // Refresh product display
-    }
-}
-
-// Add event listener to the reset button
-document.getElementById('resetCartButton').addEventListener('click', resetCart);
-
-// Function to reset the entire cart
-function resetCart() {
-    cart = {}; // Clear the cart object
-    localStorage.setItem('cart', JSON.stringify(cart)); // Save empty cart to localStorage
-    updateCartCount(); // Update the cart count display
-    console.log('Cart has been reset.');
-
-    // Optionally, re-render the products to reflect the reset state
-    fetchAndRenderProducts();
-}
