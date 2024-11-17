@@ -4,7 +4,7 @@ let emailJsServiceId, emailJsTemplateId;  // Global variables for EmailJS servic
 document.addEventListener("DOMContentLoaded", async function () {
     try {
         // Fetch EmailJS keys from the server
-        const response = await fetch('http://localhost:5000/get-emailjs-keys');
+        const response = await fetch('https://imranfaith.com/get-emailjs-keys');
         
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
