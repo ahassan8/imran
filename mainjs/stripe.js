@@ -86,9 +86,11 @@ document.addEventListener("DOMContentLoaded", async function () {
                     // Store the order summary in localStorage
                     storeOrderSummary(orderID, cart);
 
-                    // Send confirmation email using emailjs.js
+                    // Send confirmation email to user using emailjs.js
                     try {
-                        await sendEmailWithUserDetails(orderID, cartItems); // Call the function from emailjs.js
+                        const orderSummary = JSON.parse(localStorage.getItem('orderSummary'));
+                        await sendEmailWithUserDetails(orderID, cartItems); // Admin notification
+                        await sendOrderConfirmationToUser(orderSummary); // User confirmation
                     } catch (error) {
                         console.error('Error sending email:', error);
                     }
