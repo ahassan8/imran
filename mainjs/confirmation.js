@@ -1,4 +1,4 @@
-window.onload = function () {
+window.onload = async function () {
     // Retrieve order details from localStorage (common for both PayPal and Stripe)
     const orderSummary = JSON.parse(localStorage.getItem('orderSummary')) || {};
 
@@ -27,6 +27,18 @@ window.onload = function () {
         document.getElementById('orderTotal').textContent = 'Total not available';
     }
 
+    // Load products.json for fetching additional details (like E-book download links)
+    let products = [];
+    try {
+        const response = await fetch('../maindata/products.json');
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        products = await response.json();
+    } catch (error) {
+        console.error('Error fetching products.json:', error);
+    }
+
     // Display Purchased Items (iterate through the cart items)
     const orderItems = orderSummary.items;
     const itemListHTML = Object.values(orderItems).map(item => `
@@ -36,10 +48,12 @@ window.onload = function () {
 
     // Check for E-books in the purchased items and display a download link
     const ebookSection = document.getElementById('ebookSection');
-    const ebooks = orderItems.filter(item => item.isEbook); // Assuming `isEbook` property marks E-books
+    const ebooks = orderItems
+        .map(item => products.find(product => product.title === item.title && product.pdf)) // Match item with product having a PDF
+        .filter(ebook => ebook); // Filter only valid E-books
     if (ebooks.length > 0) {
         const ebookLinksHTML = ebooks.map(ebook => `
-            <p>E-book: ${ebook.title} - <a href="${ebook.downloadLink}" target="_blank">Download PDF</a></p>
+            <p>E-book: ${ebook.title} - <a href="${ebook.pdf}" target="_blank">Download PDF</a></p>
         `).join('');
         ebookSection.innerHTML = ebookLinksHTML;
         ebookSection.style.display = 'block';
