@@ -14,15 +14,9 @@ document.addEventListener("DOMContentLoaded", async function () {
         const elements = stripe.elements();
 
         // Create the card number, expiry, and CVC elements
-        const cardNumberElement = elements.create('cardNumber', {
-            placeholder: 'Card Number' // Custom placeholder for card number
-        });
-        const cardExpiryElement = elements.create('cardExpiry', {
-            placeholder: 'Expiration date MM / YY' // Custom placeholder for expiry date
-        });
-        const cardCvcElement = elements.create('cardCvc', {
-            placeholder: 'Security code' // Custom placeholder for CVC
-        });
+        const cardNumberElement = elements.create('cardNumber', { placeholder: 'Card Number' });
+        const cardExpiryElement = elements.create('cardExpiry', { placeholder: 'Expiration date MM / YY' });
+        const cardCvcElement = elements.create('cardCvc', { placeholder: 'Security code' });
 
         // Mount each element to its respective div
         cardNumberElement.mount('#card-number-element');
@@ -32,17 +26,8 @@ document.addEventListener("DOMContentLoaded", async function () {
         // Handle card brand detection and validation
         cardNumberElement.on('change', function (event) {
             const cardType = event.brand;
-
-            // Hide all icons by default
             document.querySelectorAll('.card-icon').forEach(icon => icon.style.display = 'none');
-
-            const iconMap = {
-                visa: 'visa-icon',
-                mastercard: 'mastercard-icon',
-                amex: 'amex-icon',
-                jcb: 'jcb-icon'
-            };
-
+            const iconMap = { visa: 'visa-icon', mastercard: 'mastercard-icon', amex: 'amex-icon', jcb: 'jcb-icon' };
             if (iconMap[cardType]) {
                 document.getElementById(iconMap[cardType]).style.display = 'block';
             }
@@ -71,7 +56,6 @@ document.addEventListener("DOMContentLoaded", async function () {
             const orderID = generateOrderID();
 
             try {
-                // Prepare cart items for storage and email
                 const cart = JSON.parse(localStorage.getItem('cart')) || {};
                 const cartItems = Object.values(cart).map(item => ({
                     title: item.title,
@@ -109,29 +93,39 @@ document.addEventListener("DOMContentLoaded", async function () {
                 } else if (result.paymentIntent.status === 'succeeded') {
                     document.getElementById('form-success').textContent = 'Your payment has been successfully processed!';
                     
-                    // Store order summary in localStorage
-                    storeOrderSummary(orderID, totalAmount, cartItems);
+                    // Store the order summary and shipping details in localStorage
+                    storeOrderSummary(orderID, cart);
 
-                    // Redirect to confirmation page
-                    clearCartAndRedirect();
+                    // Send confirmation email
+                    try {
+                        await sendEmailWithUserDetails(orderID, cartItems); // Pass the Order ID and cartItems to EmailJS
+                        redirectToConfirmationAndClearCart(); // Clear cart and redirect
+                    } catch (error) {
+                        console.error('Error sending email:', error);
+                        alert('An error occurred while sending the confirmation email. Please try again.');
+                    }
                 }
             } catch (error) {
                 displayError(document.getElementById('form-error'), `Payment failed: ${error.message}`);
             }
         });
 
-        // Function to store order summary in localStorage
-        function storeOrderSummary(orderID, totalAmount, items) {
+        // Store order summary in localStorage to display on the confirmation page
+        function storeOrderSummary(orderID, cart) {
             const orderSummary = {
                 orderID: orderID,
-                totalAmount: totalAmount,
-                items: items,
+                totalAmount: parseFloat(document.getElementById('totalAmount').textContent.replace('$', '')),
+                items: Object.values(cart).map(item => ({
+                    title: item.title,
+                    price: (item.price / 100),
+                    quantity: item.quantity
+                })),
                 shipping: {
                     name: `${document.getElementById('firstName').value} ${document.getElementById('lastName').value}`,
                     address: document.getElementById('address').value,
                     city: document.getElementById('city').value,
                     state: document.getElementById('state').value,
-                    zip: document.getElementById('zip').value,
+                    zip: document.getElementById('zip').value
                 }
             };
 
@@ -139,10 +133,28 @@ document.addEventListener("DOMContentLoaded", async function () {
             localStorage.setItem('orderSummary', JSON.stringify(orderSummary));
         }
 
-        // Clear cart and redirect to confirmation page
-        function clearCartAndRedirect() {
-            localStorage.removeItem('cart');
+        // Send email with EmailJS
+        async function sendEmailWithUserDetails(orderID, cartItems) {
+            const templateParams = {
+                orderID,
+                totalAmount: `$${parseFloat(document.getElementById('totalAmount').textContent.replace('$', '')).toFixed(2)}`,
+                items: cartItems.map(item => `${item.title} - ${item.quantity} x $${item.price.toFixed(2)}`).join(', '),
+                shippingName: `${document.getElementById('firstName').value} ${document.getElementById('lastName').value}`,
+                shippingAddress: `${document.getElementById('address').value}, ${document.getElementById('city').value}, ${document.getElementById('state').value}, ${document.getElementById('zip').value}`,
+            };
+
+            try {
+                await emailjs.send('service_yourServiceID', 'template_yourTemplateID', templateParams);
+                console.log('Order confirmation email sent successfully.');
+            } catch (error) {
+                console.error('Error sending order confirmation email:', error);
+            }
+        }
+
+        // Redirect to confirmation page and clear the cart
+        function redirectToConfirmationAndClearCart() {
             window.location.href = 'confirmation.html';
+            localStorage.removeItem('cart'); // Clear cart
         }
 
         // Validate form inputs
@@ -179,7 +191,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             input.classList.remove('input-error');
         }
 
-        // Function to generate a unique order ID
+        // Generate a unique order ID
         function generateOrderID() {
             const timestamp = Date.now();
             const randomNumber = Math.floor(Math.random() * 1000);
