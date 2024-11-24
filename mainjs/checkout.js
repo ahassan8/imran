@@ -72,29 +72,6 @@ function setupBillingOptions() {
     });
 }
 
-// Store order summary in localStorage to display on confirmation page
-function storeOrderSummary(orderID) {
-    const orderSummary = {
-        orderID: orderID,
-        totalAmount: parseFloat(document.getElementById('totalAmount').textContent.replace('$', '')),
-        items: Object.values(cart).map(item => ({
-            title: item.title,
-            price: (item.price / 100),
-            quantity: item.quantity
-        })),
-        shipping: {
-            name: document.getElementById('firstName').value + ' ' + document.getElementById('lastName').value,
-            address: document.getElementById('address').value,
-            city: document.getElementById('city').value,
-            state: document.getElementById('state').value,
-            zip: document.getElementById('zip').value
-        }
-    };
-
-    console.log("Storing order summary: ", orderSummary); // Debugging
-    localStorage.setItem('orderSummary', JSON.stringify(orderSummary));
-}
-
 // Restrict phone input to numbers only, limit to 15 digits
 document.getElementById('phone').addEventListener('keypress', function (event) {
     const phoneNumber = document.getElementById('phone').value;
