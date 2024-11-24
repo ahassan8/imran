@@ -1,4 +1,4 @@
-let emailJsServiceId, emailJsTemplateId;  // Global variables for EmailJS serviceId and templateId
+let emailJsServiceId, emailJsTemplateId; // Global variables for EmailJS serviceId and templateId
 
 // Fetch and initialize EmailJS
 document.addEventListener("DOMContentLoaded", async function () {
@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
 });
 
-// Function to send email with user details, including Order ID and product info (title and quantity)
+// Function to send an email to the admin (you) with order details
 async function sendEmailWithUserDetails(orderID, cartItems) {
     const name = `${document.getElementById('firstName').value} ${document.getElementById('lastName').value}`;
     const email = document.getElementById('email').value;
@@ -40,11 +40,11 @@ async function sendEmailWithUserDetails(orderID, cartItems) {
     // Prepare the product details (title and quantity)
     const products = cartItems.map(item => {
         return `${item.title} (Quantity: ${item.quantity})`;
-    }).join(', ');  // Combine products into a single string for the email template
+    }).join(', '); // Combine products into a single string for the email template
 
     // Include the generated Order ID and products in the email parameters
     const templateParams = {
-        orderID,  // Add the Order ID to the email template
+        orderID, // Add the Order ID to the email template
         name,
         email,
         phone,
@@ -53,16 +53,49 @@ async function sendEmailWithUserDetails(orderID, cartItems) {
         state,
         zipcode,
         total: totalAmount,
-        products  // Send product details (title and quantity)
+        products // Send product details (title and quantity)
     };
 
     try {
         // Use the globally stored serviceId and templateId
         const response = await emailjs.send(emailJsServiceId, emailJsTemplateId, templateParams);
-        console.log('Email sent successfully!', response.status, response.text);
+        console.log('Email sent successfully to admin!', response.status, response.text);
     } catch (error) {
-        console.error('Error sending email:', error);
-        document.getElementById('status').textContent = "Failed to send email. Please try again.";
+        console.error('Error sending email to admin:', error);
+        document.getElementById('status').textContent = "Failed to send email to admin. Please try again.";
+        document.getElementById('status').style.color = "red";
+    }
+}
+
+// Function to send an order confirmation email to the user
+async function sendOrderConfirmationToUser(orderID, cartItems) {
+    const userEmail = document.getElementById('email').value;
+    const userName = `${document.getElementById('firstName').value} ${document.getElementById('lastName').value}`;
+    const totalAmount = document.getElementById('totalAmount').textContent.replace('$', '');
+
+    // Prepare the product details (title and quantity)
+    const products = cartItems.map(item => {
+        return `${item.title} (Quantity: ${item.quantity})`;
+    }).join(', '); // Combine products into a single string for the email template
+
+    // Include the user's details, order summary, and a Thank You message in the email parameters
+    const templateParams = {
+        to_email: userEmail, // User's email
+        user_name: userName,
+        order_id: orderID,
+        total: totalAmount,
+        items: products,
+        shipping_address: `${document.getElementById('address').value}, ${document.getElementById('city').value}, ${document.getElementById('state').value}, ${document.getElementById('zip').value}`,
+        thank_you_message: `Thank you for your order, ${userName}! We appreciate your business and hope to serve you again soon.`
+    };
+
+    try {
+        // Use the globally stored serviceId and templateId
+        const response = await emailjs.send(emailJsServiceId, emailJsTemplateId, templateParams);
+        console.log('Order confirmation email sent successfully to the user!', response.status, response.text);
+    } catch (error) {
+        console.error('Error sending order confirmation email to the user:', error);
+        document.getElementById('status').textContent = "Failed to send order confirmation email to the user. Please try again.";
         document.getElementById('status').style.color = "red";
     }
 }
