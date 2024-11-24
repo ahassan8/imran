@@ -90,7 +90,7 @@ document.addEventListener("DOMContentLoaded", async function () {
                     try {
                         const orderSummary = JSON.parse(localStorage.getItem('orderSummary'));
                         await sendEmailWithUserDetails(orderID, cartItems); // Admin notification
-                        await sendOrderConfirmationToUser(orderSummary); // User confirmation
+                        await sendOrderConfirmationToUser(orderID, cartItems); // User confirmation
                     } catch (error) {
                         console.error('Error sending email:', error);
                     }
