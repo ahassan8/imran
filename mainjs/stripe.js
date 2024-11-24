@@ -24,16 +24,6 @@ document.addEventListener("DOMContentLoaded", async function () {
         cardCvcElement.mount('#card-cvc-element');
 
         // Handle card brand detection and validation
-        cardNumberElement.on('change', function (event) {
-            const cardType = event.brand;
-            document.querySelectorAll('.card-icon').forEach(icon => icon.style.display = 'none');
-            const iconMap = { visa: 'visa-icon', mastercard: 'mastercard-icon', amex: 'amex-icon', jcb: 'jcb-icon' };
-            if (iconMap[cardType]) {
-                document.getElementById(iconMap[cardType]).style.display = 'block';
-            }
-        });
-
-        // Handle validation errors from the Stripe elements
         cardNumberElement.on('change', handleStripeError);
         cardExpiryElement.on('change', handleStripeError);
         cardCvcElement.on('change', handleStripeError);
@@ -93,24 +83,25 @@ document.addEventListener("DOMContentLoaded", async function () {
                 } else if (result.paymentIntent.status === 'succeeded') {
                     document.getElementById('form-success').textContent = 'Your payment has been successfully processed!';
                     
-                    // Store the order summary and shipping details in localStorage
+                    // Store the order summary in localStorage
                     storeOrderSummary(orderID, cart);
 
-                    // Send confirmation email
+                    // Send confirmation email using emailjs.js
                     try {
-                        await sendEmailWithUserDetails(orderID, cartItems); // Pass the Order ID and cartItems to EmailJS
-                        redirectToConfirmationAndClearCart(); // Clear cart and redirect
+                        await sendEmailWithUserDetails(orderID, cartItems); // Call the function from emailjs.js
                     } catch (error) {
                         console.error('Error sending email:', error);
-                        alert('An error occurred while sending the confirmation email. Please try again.');
                     }
+
+                    // Redirect to confirmation page
+                    redirectToConfirmationAndClearCart();
                 }
             } catch (error) {
                 displayError(document.getElementById('form-error'), `Payment failed: ${error.message}`);
             }
         });
 
-        // Store order summary in localStorage to display on the confirmation page
+        // Store order summary in localStorage
         function storeOrderSummary(orderID, cart) {
             const orderSummary = {
                 orderID: orderID,
@@ -133,28 +124,10 @@ document.addEventListener("DOMContentLoaded", async function () {
             localStorage.setItem('orderSummary', JSON.stringify(orderSummary));
         }
 
-        // Send email with EmailJS
-        async function sendEmailWithUserDetails(orderID, cartItems) {
-            const templateParams = {
-                orderID,
-                totalAmount: `$${parseFloat(document.getElementById('totalAmount').textContent.replace('$', '')).toFixed(2)}`,
-                items: cartItems.map(item => `${item.title} - ${item.quantity} x $${item.price.toFixed(2)}`).join(', '),
-                shippingName: `${document.getElementById('firstName').value} ${document.getElementById('lastName').value}`,
-                shippingAddress: `${document.getElementById('address').value}, ${document.getElementById('city').value}, ${document.getElementById('state').value}, ${document.getElementById('zip').value}`,
-            };
-
-            try {
-                await emailjs.send('service_yourServiceID', 'template_yourTemplateID', templateParams);
-                console.log('Order confirmation email sent successfully.');
-            } catch (error) {
-                console.error('Error sending order confirmation email:', error);
-            }
-        }
-
         // Redirect to confirmation page and clear the cart
         function redirectToConfirmationAndClearCart() {
             window.location.href = 'confirmation.html';
-            localStorage.removeItem('cart'); // Clear cart
+            localStorage.removeItem('cart');
         }
 
         // Validate form inputs
