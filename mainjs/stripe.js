@@ -46,7 +46,6 @@ document.addEventListener("DOMContentLoaded", async function () {
             } else if (cardType === 'jcb') {
                 document.getElementById('jcb-icon').style.display = 'block';
             }
-            // Add more card types if needed
         });
 
         // Handle validation errors from the Stripe elements
@@ -64,21 +63,38 @@ document.addEventListener("DOMContentLoaded", async function () {
             }
         }
 
-        // Function to process Stripe payment
-        window.processStripePayment = async function (totalAmount) {
+        // Handle confirm purchase button logic
+        document.getElementById('confirmPurchaseButton').addEventListener('click', async (event) => {
+            event.preventDefault();
+
+            if (!validateForm()) {
+                displayError(document.getElementById('form-error'), 'Please complete all required fields.');
+                return;
+            }
+
+            const totalAmount = parseFloat(document.getElementById('totalAmount').textContent.replace('$', ''));
+
             try {
+                const orderID = generateOrderID(); // Generate Order ID
+
+                // Ensure that cartItems is correctly populated as an array
+                const cartItems = Object.values(cart).map(item => ({
+                    title: item.title,
+                    quantity: item.quantity
+                })) || [];
+
+                if (cartItems.length === 0) {
+                    displayError(document.getElementById('form-error'), 'Your cart is empty.');
+                    return;
+                }
+
                 // Step 1: Create a Payment Intent on the server
                 const response = await fetch('https://api.imranfaith.com/create-payment-intent', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ amount: Math.round(totalAmount * 100) }) // Amount in cents
+                    body: JSON.stringify({ amount: totalAmount * 100 }) // Convert dollars to cents
                 });
 
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-
-                // Parse the JSON response to get the client secret
                 const { clientSecret } = await response.json();
 
                 // Step 2: Confirm the payment using the client secret and the card element
@@ -92,32 +108,83 @@ document.addEventListener("DOMContentLoaded", async function () {
                     }
                 });
 
-                // Step 3: Handle the result of the payment
+                // Handle the result of the payment
                 if (result.error) {
-                    console.error("Payment failed:", result.error.message);
-                    document.getElementById('card-errors').textContent = `Payment failed: ${result.error.message}`;
+                    displayError(document.getElementById('form-error'), `Payment failed: ${result.error.message}`);
                 } else {
                     if (result.paymentIntent.status === 'succeeded') {
                         document.getElementById('form-success').textContent = 'Your payment has been successfully processed!';
-                        document.getElementById('confirmPurchaseButton').disabled = true;
+                        storeOrderSummary(orderID); // Store order details before clearing the cart
+                        clearCartAndRedirect(); // Clear the cart and redirect to confirmation page
                     }
                 }
             } catch (error) {
-                console.error("Error processing payment:", error);
-                document.getElementById('card-errors').textContent = `Payment failed: ${error.message}`;
+                displayError(document.getElementById('form-error'), `Payment failed: ${error.message}`);
             }
-        };
+        });
 
-        // Optional function to handle payment success globally
-        function handleStripePaymentSuccess() {
-            console.log('Stripe Payment Successful');
-            window.markPaymentAsCompleted(); // Mark payment as completed globally
+        // Store order summary in localStorage to display on confirmation page
+        function storeOrderSummary(orderID) {
+            const orderSummary = {
+                orderID: orderID,
+                totalAmount: parseFloat(document.getElementById('totalAmount').textContent.replace('$', '')),
+                items: Object.values(cart).map(item => ({
+                    title: item.title,
+                    price: (item.price / 100),
+                    quantity: item.quantity
+                })),
+                shipping: {
+                    name: document.getElementById('firstName').value + ' ' + document.getElementById('lastName').value,
+                    address: document.getElementById('address').value,
+                    city: document.getElementById('city').value,
+                    state: document.getElementById('state').value,
+                    zip: document.getElementById('zip').value
+                }
+            };
+
+            localStorage.setItem('orderSummary', JSON.stringify(orderSummary));
+        }
+
+        // Clear cart and redirect to confirmation page
+        function clearCartAndRedirect() {
+            localStorage.removeItem('cart');
+            window.location.href = 'confirmation.html';
+        }
+
+        // Validate form inputs
+        function validateForm() {
+            const requiredFields = ['firstName', 'lastName', 'email', 'address', 'city', 'state', 'zip', 'cardName'];
+            let isValid = true;
+
+            requiredFields.forEach(id => {
+                const input = document.getElementById(id);
+                if (!input.value.trim()) {
+                    displayError(input, 'This field is required.');
+                    isValid = false;
+                } else {
+                    clearError(input);
+                }
+            });
+
+            return isValid;
+        }
+
+        function displayError(input, message) {
+            const errorContainer = input.nextElementSibling || document.createElement('div');
+            errorContainer.classList.add('error-message');
+            errorContainer.textContent = message;
+            input.after(errorContainer);
+            input.classList.add('input-error');
+        }
+
+        function clearError(input) {
+            const errorContainer = input.nextElementSibling;
+            if (errorContainer && errorContainer.classList.contains('error-message')) {
+                errorContainer.textContent = '';
+            }
+            input.classList.remove('input-error');
         }
     } catch (error) {
         console.error('Error initializing Stripe:', error);
-        document.getElementById('card-errors').textContent = `Error initializing payment process: ${error.message}`;
     }
 });
-
-
-
