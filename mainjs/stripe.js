@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     try {
         // Fetch the Stripe public key from the server
         const response = await fetch('https://api.imranfaith.com/get-stripe-publishable-key');
-        
+
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -36,7 +36,6 @@ document.addEventListener("DOMContentLoaded", async function () {
             // Hide all icons by default
             document.querySelectorAll('.card-icon').forEach(icon => icon.style.display = 'none');
 
-            // Show the relevant card icon based on the detected brand
             const iconMap = {
                 visa: 'visa-icon',
                 mastercard: 'mastercard-icon',
@@ -54,7 +53,6 @@ document.addEventListener("DOMContentLoaded", async function () {
         cardExpiryElement.on('change', handleStripeError);
         cardCvcElement.on('change', handleStripeError);
 
-        // Function to handle Stripe errors and display them in the UI
         function handleStripeError(event) {
             const displayError = document.getElementById('card-errors');
             displayError.textContent = event.error ? event.error.message : '';
@@ -114,14 +112,7 @@ document.addEventListener("DOMContentLoaded", async function () {
                     // Store order summary in localStorage
                     storeOrderSummary(orderID, totalAmount, cartItems);
 
-                    // Send email notification
-                    try {
-                        await sendEmailWithUserDetails(orderID, cartItems);
-                    } catch (emailError) {
-                        console.error('Error sending email:', emailError);
-                    }
-
-                    // Clear cart and redirect
+                    // Redirect to confirmation page
                     clearCartAndRedirect();
                 }
             } catch (error) {
@@ -156,7 +147,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
         // Validate form inputs
         function validateForm() {
-            const requiredFields = ['firstName', 'lastName', 'email', 'address', 'city', 'state', 'zip', 'cardName'];
+            const requiredFields = ['firstName', 'lastName', 'email', 'address', 'city', 'state', 'zip'];
             let isValid = true;
 
             requiredFields.forEach(id => {
