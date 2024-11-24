@@ -1,9 +1,7 @@
 let cart = JSON.parse(localStorage.getItem('cart')) || {};
-let paymentCompleted = false; // Track payment completion
-let paymentMethod = ''; // Store payment method
 
 // Load cart items and calculate total on page load
-window.onload = async function () {
+window.onload = function () {
     const cartItemsContainer = document.getElementById('cartItemsContainer');
     let subtotalAmount = 0;
 
@@ -36,9 +34,9 @@ window.onload = async function () {
 
     cartItemsContainer.innerHTML += `
         <div class="total-section">
-            <p>Subtotal <span id="subtotalAmount">$${subtotalAmount.toFixed(2)}</span></p>
-            <p>Shipping <span id="shippingFee">$${shippingFee.toFixed(2)}</span></p>
-            <p class="total-amount">Total <span id="totalAmount">$${totalAmount.toFixed(2)}</span></p>
+            <p>Subtotal: <span id="subtotalAmount">$${subtotalAmount.toFixed(2)}</span></p>
+            <p>Shipping: <span id="shippingFee">$${shippingFee.toFixed(2)}</span></p>
+            <p class="total-amount">Total: <span id="totalAmount">$${totalAmount.toFixed(2)}</span></p>
         </div>
     `;
 
@@ -74,51 +72,6 @@ function setupBillingOptions() {
     });
 }
 
-// Confirm Purchase button logic (for Stripe)
-document.getElementById('confirmPurchaseButton').addEventListener('click', async (event) => {
-    event.preventDefault();
-
-    if (!validateForm()) {
-        displayError(document.getElementById('form-error'), 'Please complete all required fields.');
-        return;
-    }
-
-    const totalAmount = parseFloat(document.getElementById('totalAmount').textContent.replace('$', ''));
-
-    try {
-        const orderID = generateOrderID(); // Generate Order ID
-
-        // Ensure that cartItems is correctly populated as an array
-        const cartItems = Object.values(cart).map(item => ({
-            title: item.title,
-            quantity: item.quantity
-        })) || [];
-
-        if (cartItems.length === 0) {
-            displayError(document.getElementById('form-error'), 'Your cart is empty.');
-            return;
-        }
-
-        // Call your server's endpoint to create a Stripe payment intent
-        const response = await fetch('https://api.imranfaith.com/create-payment-intent', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ amount: totalAmount * 100 }) // Convert dollars to cents
-        });
-
-        const { clientSecret } = await response.json();
-        await window.processStripePayment(clientSecret); // Process payment with the retrieved clientSecret
-
-        await sendEmailWithUserDetails(orderID, cartItems); // Send email with Order ID and cartItems
-        storeOrderSummary(orderID); // Store order details before clearing the cart
-        clearCartAndRedirect(); // Clear the cart and redirect to confirmation page
-    } catch (error) {
-        displayError(document.getElementById('form-error'), `Payment failed: ${error.message}`);
-    }
-});
-
 // Store order summary in localStorage to display on confirmation page
 function storeOrderSummary(orderID) {
     const orderSummary = {
@@ -140,53 +93,6 @@ function storeOrderSummary(orderID) {
 
     console.log("Storing order summary: ", orderSummary); // Debugging
     localStorage.setItem('orderSummary', JSON.stringify(orderSummary));
-}
-
-// Generate unique order ID
-function generateOrderID() {
-    return 'ORD-' + Math.random().toString(36).substr(2, 9).toUpperCase();
-}
-
-// Validate form inputs (ensure all required fields are filled)
-function validateForm() {
-    const requiredFields = ['firstName', 'lastName', 'email', 'address', 'city', 'state', 'zip', 'cardName'];
-    let isValid = true;
-
-    requiredFields.forEach(id => {
-        const input = document.getElementById(id);
-        if (!input.value.trim()) {
-            displayError(input, 'This field is required.');
-            isValid = false;
-        } else {
-            clearError(input);
-        }
-    });
-
-    return isValid;
-}
-
-// Display error message
-function displayError(input, message) {
-    const errorContainer = input.nextElementSibling || document.createElement('div');
-    errorContainer.classList.add('error-message');
-    errorContainer.textContent = message;
-    input.after(errorContainer);
-    input.classList.add('input-error');
-}
-
-// Clear error messages
-function clearError(input) {
-    const errorContainer = input.nextElementSibling;
-    if (errorContainer && errorContainer.classList.contains('error-message')) {
-        errorContainer.textContent = '';
-    }
-    input.classList.remove('input-error');
-}
-
-// Clear cart and redirect to confirmation page
-function clearCartAndRedirect() {
-    localStorage.removeItem('cart');
-    window.location.href = 'confirmation.html';
 }
 
 // Restrict phone input to numbers only, limit to 15 digits
@@ -211,7 +117,6 @@ function validateNumbersOnly(input) {
     const numbersPattern = /^[0-9]+$/;
     return numbersPattern.test(input.value);
 }
-
 
 
 
