@@ -19,6 +19,12 @@ document.addEventListener('DOMContentLoaded', async function () {
                 label: 'paypal'
             },
             createOrder: function (data, actions) {
+                // Validate user input before proceeding
+                if (!validateUserInfo()) {
+                    document.getElementById('form-error').textContent = 'Please complete all required fields before proceeding.';
+                    return actions.reject();
+                }
+
                 const totalAmount = calculateTotalAmount();
                 if (totalAmount <= 0) {
                     document.getElementById('form-error').textContent = 'Your cart is empty. Please add items to your cart.';
@@ -70,6 +76,46 @@ document.addEventListener('DOMContentLoaded', async function () {
         document.getElementById('form-error').textContent = `Error initializing PayPal: ${error.message}`;
     }
 
+    // Validate user information before proceeding with payment
+    function validateUserInfo() {
+        const requiredFields = ['firstName', 'lastName', 'address', 'city', 'state', 'zip'];
+        let isValid = true;
+
+        requiredFields.forEach(id => {
+            const input = document.getElementById(id);
+            if (!input || !input.value.trim()) {
+                displayError(input, 'This field is required.');
+                isValid = false;
+            } else {
+                clearError(input);
+            }
+        });
+
+        return isValid;
+    }
+
+    // Display error message for invalid fields
+    function displayError(input, message) {
+        if (input) {
+            const errorContainer = input.nextElementSibling || document.createElement('div');
+            errorContainer.classList.add('error-message');
+            errorContainer.textContent = message;
+            input.after(errorContainer);
+            input.classList.add('input-error');
+        }
+    }
+
+    // Clear error messages
+    function clearError(input) {
+        if (input) {
+            const errorContainer = input.nextElementSibling;
+            if (errorContainer && errorContainer.classList.contains('error-message')) {
+                errorContainer.textContent = '';
+            }
+            input.classList.remove('input-error');
+        }
+    }
+
     // Store order summary in localStorage to display on confirmation page
     function storeOrderSummary(orderID, cart) {
         const orderSummary = {
@@ -81,7 +127,7 @@ document.addEventListener('DOMContentLoaded', async function () {
                 quantity: item.quantity
             })),
             shipping: {
-                name: document.getElementById('firstName').value + ' ' + document.getElementById('lastName').value,
+                name: `${document.getElementById('firstName').value} ${document.getElementById('lastName').value}`,
                 address: document.getElementById('address').value,
                 city: document.getElementById('city').value,
                 state: document.getElementById('state').value,
