@@ -2,7 +2,7 @@ window.onload = function () {
     // Retrieve order details from localStorage (common for both PayPal and Stripe)
     const orderSummary = JSON.parse(localStorage.getItem('orderSummary')) || {};
 
-    // If there is no orderSummary, redirect to homepage
+    // If there is no orderSummary, redirect to the homepage
     if (!orderSummary.items || Object.keys(orderSummary.items).length === 0) {
         window.location.href = 'index.html';
         return;
@@ -33,6 +33,19 @@ window.onload = function () {
         <li>${item.title} - ${item.quantity} x $${item.price.toFixed(2)}</li>
     `).join('');
     document.getElementById('orderItems').innerHTML = itemListHTML;
+
+    // Check for E-books in the purchased items and display a download link
+    const ebookSection = document.getElementById('ebookSection');
+    const ebooks = orderItems.filter(item => item.isEbook); // Assuming `isEbook` property marks E-books
+    if (ebooks.length > 0) {
+        const ebookLinksHTML = ebooks.map(ebook => `
+            <p>E-book: ${ebook.title} - <a href="${ebook.downloadLink}" target="_blank">Download PDF</a></p>
+        `).join('');
+        ebookSection.innerHTML = ebookLinksHTML;
+        ebookSection.style.display = 'block';
+    } else {
+        ebookSection.style.display = 'none';
+    }
 
     // Display Shipping Information (if available)
     if (orderSummary.shipping) {
