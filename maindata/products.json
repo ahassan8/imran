@@ -1,0 +1,66 @@
+[
+    {
+        "id": 1,
+        "category": "Books",
+        "title": "Jesus is Muslim, yes",
+        "price": 44, 
+        "stock": 8,
+        "description": "A thought-provoking book on spirituality and interfaith dialogue.",
+        "image": "galaxy.jpg"
+    },
+    {
+        "id": 2,
+        "category": "Books",
+        "title": "This is a Book with no Error",
+        "price": 155,
+        "stock": 3,
+        "description": "Coming soon - a book about overcoming challenges.",
+        "image": "eren_paths.jpg"
+    },
+    {
+        "id": 3,
+        "category": "Car Decals",
+        "title": "Hello",
+        "price": 5500,
+        "stock": 185,
+        "description": "A simple yet stylish car decal.",
+        "image": "ichi.jpg"
+    },
+    {
+        "id": 4,
+        "category": "Books",
+        "title": "New",
+        "price": 6580,
+        "stock": 88,
+        "description": "A premium home accessory.",
+        "image": "hulu.png"
+    },
+    {
+        "id": 5,
+        "category": "Car Decals",
+        "title": "Transition",
+        "price": 3400,
+        "stock": 1772,
+        "description": "A decorative transition piece for your home.",
+        "image": "REALRAIN.png"
+    },
+    {
+        "id": 6,
+        "category": "E-books",
+        "title": "Six",
+        "price": 4599,
+        "stock": 77865,
+        "description": "A car decal for the number six enthusiasts.",
+        "image": "hirsu.png"
+    },
+    {
+        "id": 7,
+        "category": "E-books",
+        "title": "The Path to Enlightenment",
+        "price": 999,
+        "stock": 100,
+        "description": "A comprehensive guide to spiritual enlightenment.",
+        "image": "enlightenment.jpg",
+        "pdf": "pdf/path_to_enlightenment.pdf"
+    }
+]
