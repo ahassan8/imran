@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         const response = await fetch('https://api.imranfaith.com/get-stripe-publishable-key');
 
         if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
+            throw new Error(HTTP error! status: ${response.status});
         }
 
         const { publishableKey } = await response.json();
@@ -72,25 +72,23 @@ document.addEventListener("DOMContentLoaded", async function () {
                     payment_method: {
                         card: cardNumberElement,
                         billing_details: {
-                            name: `${document.getElementById('firstName').value} ${document.getElementById('lastName').value}`,
+                            name: ${document.getElementById('firstName').value} ${document.getElementById('lastName').value},
                             email: document.getElementById('email').value,
                         }
                     }
                 });
 
                 if (result.error) {
-                    displayError(document.getElementById('form-error'), `Payment failed: ${result.error.message}`);
+                    displayError(document.getElementById('form-error'), Payment failed: ${result.error.message});
                 } else if (result.paymentIntent.status === 'succeeded') {
                     document.getElementById('form-success').textContent = 'Your payment has been successfully processed!';
                     
                     // Store the order summary in localStorage
                     storeOrderSummary(orderID, cart);
 
-                    // Send confirmation email to user using emailjs.js
+                    // Send confirmation email using emailjs.js
                     try {
-                        const orderSummary = JSON.parse(localStorage.getItem('orderSummary'));
-                        await sendEmailWithUserDetails(orderID, cartItems); // Admin notification
-                        await sendOrderConfirmationToUser(orderID, cartItems); // User confirmation
+                        await sendEmailWithUserDetails(orderID, cartItems); // Call the function from emailjs.js
                     } catch (error) {
                         console.error('Error sending email:', error);
                     }
@@ -99,7 +97,7 @@ document.addEventListener("DOMContentLoaded", async function () {
                     redirectToConfirmationAndClearCart();
                 }
             } catch (error) {
-                displayError(document.getElementById('form-error'), `Payment failed: ${error.message}`);
+                displayError(document.getElementById('form-error'), Payment failed: ${error.message});
             }
         });
 
@@ -114,7 +112,7 @@ document.addEventListener("DOMContentLoaded", async function () {
                     quantity: item.quantity
                 })),
                 shipping: {
-                    name: `${document.getElementById('firstName').value} ${document.getElementById('lastName').value}`,
+                    name: ${document.getElementById('firstName').value} ${document.getElementById('lastName').value},
                     address: document.getElementById('address').value,
                     city: document.getElementById('city').value,
                     state: document.getElementById('state').value,
@@ -170,7 +168,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         function generateOrderID() {
             const timestamp = Date.now();
             const randomNumber = Math.floor(Math.random() * 1000);
-            return `ORD-${timestamp}-${randomNumber}`;
+            return ORD-${timestamp}-${randomNumber};
         }
     } catch (error) {
         console.error('Error initializing Stripe:', error);
