@@ -28,7 +28,7 @@
     },
     {
         "id": 4,
-        "category": "Accessories",
+        "category": "Books",
         "title": "New",
         "price": 6580,
         "stock": 88,
@@ -37,7 +37,7 @@
     },
     {
         "id": 5,
-        "category": "Accessories",
+        "category": "Car Decals",
         "title": "Transition",
         "price": 3400,
         "stock": 1772,
@@ -46,11 +46,21 @@
     },
     {
         "id": 6,
-        "category": "Car Decals",
+        "category": "E-books",
         "title": "Six",
         "price": 4599,
         "stock": 77865,
         "description": "A car decal for the number six enthusiasts.",
         "image": "hirsu.png"
+    },
+    {
+        "id": 7,
+        "category": "E-books",
+        "title": "The Path to Enlightenment",
+        "price": 999,
+        "stock": 100,
+        "description": "A comprehensive guide to spiritual enlightenment.",
+        "image": "enlightenment.jpg",
+        "pdf": "pdf/path_to_enlightenment.pdf"
     }
 ]
