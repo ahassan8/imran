@@ -3,14 +3,20 @@ const urlParams = new URLSearchParams(window.location.search);
 const productId = urlParams.get('id'); // Extract 'id' parameter
 
 if (productId) {
-    fetch(`https://imranfaith.com/products/${productId}`)
+    // Fetch products from the local JSON file
+    fetch('./maindata/products.json') // Adjust the path to your JSON file
         .then(response => {
             if (!response.ok) {
-                throw new Error('Product not found');
+                throw new Error('Failed to load product data');
             }
             return response.json();
         })
-        .then(product => {
+        .then(products => {
+            // Find the specific product by its ID
+            const product = products.find(p => p.id == productId);
+            if (!product) {
+                throw new Error('Product not found');
+            }
             renderProductDetails(product);
         })
         .catch(error => {
@@ -66,18 +72,21 @@ function changeQuantity(productId, delta, stock) {
 function updateCart(productId, newQuantity) {
     let cart = JSON.parse(localStorage.getItem('cart')) || {};
 
-    fetch(`https://imranfaith.com/products/${productId}`)
+    fetch('./maindata/products.json') // Fetch all products from JSON
         .then(response => response.json())
-        .then(product => {
-            cart[productId] = {
-                quantity: newQuantity,
-                price: product.price,
-                title: product.title,
-                image: product.image,
-                stock: product.stock
-            };
-            localStorage.setItem('cart', JSON.stringify(cart)); // Save to localStorage
-            updateCartCount(); // Update cart count in navbar
+        .then(products => {
+            const product = products.find(p => p.id == productId);
+            if (product) {
+                cart[productId] = {
+                    quantity: newQuantity,
+                    price: product.price,
+                    title: product.title,
+                    image: product.image,
+                    stock: product.stock
+                };
+                localStorage.setItem('cart', JSON.stringify(cart)); // Save to localStorage
+                updateCartCount(); // Update cart count in navbar
+            }
         })
         .catch(error => console.error('Error fetching product:', error));
 }
