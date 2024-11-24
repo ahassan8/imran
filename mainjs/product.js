@@ -13,7 +13,7 @@ function fetchAndRenderProducts() {
             productContainer.innerHTML = ''; // Clear the previous product display
 
             // Define categories
-            const categories = ['Books', 'Car Decals', 'Accessories'];
+            const categories = ['Books', 'Car Decals', 'Accessories', 'E-books'];
 
             // Create sections for each category
             categories.forEach(category => {
@@ -35,12 +35,12 @@ function fetchAndRenderProducts() {
 
                         productDiv.innerHTML = `
                             <div class="product-image-container">
-                                <a href="../mainhtml/details.html?id=${product.id}">
+                                <a href="../details.html?id=${product.id}">
                                     <img src="../images/${product.image}" alt="${product.title}" class="product-image">
                                 </a>
                             </div>
                             <div class="product-details">
-                                <a href="../mainhtml/details.html?id=${product.id}" class="product-title-link">
+                                <a href="../details.html?id=${product.id}" class="product-title-link">
                                     <h4 class="product-title">${product.title}</h4>
                                 </a>
                                 <p class="product-available">${product.stock} available</p>
