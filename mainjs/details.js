@@ -3,7 +3,7 @@ const urlParams = new URLSearchParams(window.location.search);
 const productId = urlParams.get('id'); // Extract 'id' parameter
 
 if (productId) {
-    fetch(`http://localhost:5000/products/${productId}`)
+    fetch(`https://imranfaith.com/products/${productId}`)
         .then(response => {
             if (!response.ok) {
                 throw new Error('Product not found');
@@ -66,7 +66,7 @@ function changeQuantity(productId, delta, stock) {
 function updateCart(productId, newQuantity) {
     let cart = JSON.parse(localStorage.getItem('cart')) || {};
 
-    fetch(`http://localhost:5000/products/${productId}`)
+    fetch(`https://imranfaith.com/products/${productId}`)
         .then(response => response.json())
         .then(product => {
             cart[productId] = {
@@ -104,7 +104,7 @@ function buyNow(productId, productPrice, productTitle, productImage, availableSt
 
     localStorage.setItem('cart', JSON.stringify(cart)); // Save to localStorage
     updateCartCount(); // Update cart count in navbar
-    window.location.href = '../mainhtml/checkout.html'; // Redirect to checkout
+    window.location.href = '../checkout.html'; // Redirect to checkout
 }
 
 // Update cart count in the navbar
@@ -116,7 +116,7 @@ function updateCartCount() {
 
 // Event listener to redirect to cart.html when the cart icon is clicked
 document.querySelector('.cart-icon').addEventListener('click', () => {
-    window.location.href = '../mainhtml/cart.html';
+    window.location.href = '../cart.html';
 });
 
 // Call updateCartCount on page load
