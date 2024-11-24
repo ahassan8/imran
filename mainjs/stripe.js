@@ -30,37 +30,34 @@ document.addEventListener("DOMContentLoaded", async function () {
         cardCvcElement.mount('#card-cvc-element');
 
         // Handle card brand detection and validation
-        cardNumberElement.on('change', function(event) {
+        cardNumberElement.on('change', function (event) {
             const cardType = event.brand;
 
             // Hide all icons by default
             document.querySelectorAll('.card-icon').forEach(icon => icon.style.display = 'none');
 
             // Show the relevant card icon based on the detected brand
-            if (cardType === 'visa') {
-                document.getElementById('visa-icon').style.display = 'block';
-            } else if (cardType === 'mastercard') {
-                document.getElementById('mastercard-icon').style.display = 'block';
-            } else if (cardType === 'amex') {
-                document.getElementById('amex-icon').style.display = 'block';
-            } else if (cardType === 'jcb') {
-                document.getElementById('jcb-icon').style.display = 'block';
+            const iconMap = {
+                visa: 'visa-icon',
+                mastercard: 'mastercard-icon',
+                amex: 'amex-icon',
+                jcb: 'jcb-icon'
+            };
+
+            if (iconMap[cardType]) {
+                document.getElementById(iconMap[cardType]).style.display = 'block';
             }
         });
 
         // Handle validation errors from the Stripe elements
-        cardNumberElement.on('change', event => handleStripeError(event));
-        cardExpiryElement.on('change', event => handleStripeError(event));
-        cardCvcElement.on('change', event => handleStripeError(event));
+        cardNumberElement.on('change', handleStripeError);
+        cardExpiryElement.on('change', handleStripeError);
+        cardCvcElement.on('change', handleStripeError);
 
         // Function to handle Stripe errors and display them in the UI
         function handleStripeError(event) {
             const displayError = document.getElementById('card-errors');
-            if (event.error) {
-                displayError.textContent = event.error.message;
-            } else {
-                displayError.textContent = '';
-            }
+            displayError.textContent = event.error ? event.error.message : '';
         }
 
         // Handle confirm purchase button logic
@@ -73,15 +70,16 @@ document.addEventListener("DOMContentLoaded", async function () {
             }
 
             const totalAmount = parseFloat(document.getElementById('totalAmount').textContent.replace('$', ''));
+            const orderID = generateOrderID();
 
             try {
-                const orderID = generateOrderID(); // Generate Order ID
-
-                // Ensure that cartItems is correctly populated as an array
+                // Prepare cart items for storage and email
+                const cart = JSON.parse(localStorage.getItem('cart')) || {};
                 const cartItems = Object.values(cart).map(item => ({
                     title: item.title,
+                    price: (item.price / 100),
                     quantity: item.quantity
-                })) || [];
+                }));
 
                 if (cartItems.length === 0) {
                     displayError(document.getElementById('form-error'), 'Your cart is empty.');
@@ -89,13 +87,13 @@ document.addEventListener("DOMContentLoaded", async function () {
                 }
 
                 // Step 1: Create a Payment Intent on the server
-                const response = await fetch('https://api.imranfaith.com/create-payment-intent', {
+                const paymentIntentResponse = await fetch('https://api.imranfaith.com/create-payment-intent', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ amount: totalAmount * 100 }) // Convert dollars to cents
                 });
 
-                const { clientSecret } = await response.json();
+                const { clientSecret } = await paymentIntentResponse.json();
 
                 // Step 2: Confirm the payment using the client secret and the card element
                 const result = await stripe.confirmCardPayment(clientSecret, {
@@ -108,40 +106,45 @@ document.addEventListener("DOMContentLoaded", async function () {
                     }
                 });
 
-                // Handle the result of the payment
                 if (result.error) {
                     displayError(document.getElementById('form-error'), `Payment failed: ${result.error.message}`);
-                } else {
-                    if (result.paymentIntent.status === 'succeeded') {
-                        document.getElementById('form-success').textContent = 'Your payment has been successfully processed!';
-                        storeOrderSummary(orderID); // Store order details before clearing the cart
-                        clearCartAndRedirect(); // Clear the cart and redirect to confirmation page
+                } else if (result.paymentIntent.status === 'succeeded') {
+                    document.getElementById('form-success').textContent = 'Your payment has been successfully processed!';
+                    
+                    // Store order summary in localStorage
+                    storeOrderSummary(orderID, totalAmount, cartItems);
+
+                    // Send email notification
+                    try {
+                        await sendEmailWithUserDetails(orderID, cartItems);
+                    } catch (emailError) {
+                        console.error('Error sending email:', emailError);
                     }
+
+                    // Clear cart and redirect
+                    clearCartAndRedirect();
                 }
             } catch (error) {
                 displayError(document.getElementById('form-error'), `Payment failed: ${error.message}`);
             }
         });
 
-        // Store order summary in localStorage to display on confirmation page
-        function storeOrderSummary(orderID) {
+        // Function to store order summary in localStorage
+        function storeOrderSummary(orderID, totalAmount, items) {
             const orderSummary = {
                 orderID: orderID,
-                totalAmount: parseFloat(document.getElementById('totalAmount').textContent.replace('$', '')),
-                items: Object.values(cart).map(item => ({
-                    title: item.title,
-                    price: (item.price / 100),
-                    quantity: item.quantity
-                })),
+                totalAmount: totalAmount,
+                items: items,
                 shipping: {
-                    name: document.getElementById('firstName').value + ' ' + document.getElementById('lastName').value,
+                    name: `${document.getElementById('firstName').value} ${document.getElementById('lastName').value}`,
                     address: document.getElementById('address').value,
                     city: document.getElementById('city').value,
                     state: document.getElementById('state').value,
-                    zip: document.getElementById('zip').value
+                    zip: document.getElementById('zip').value,
                 }
             };
 
+            console.log("Order Summary Stored: ", orderSummary);
             localStorage.setItem('orderSummary', JSON.stringify(orderSummary));
         }
 
@@ -183,6 +186,13 @@ document.addEventListener("DOMContentLoaded", async function () {
                 errorContainer.textContent = '';
             }
             input.classList.remove('input-error');
+        }
+
+        // Function to generate a unique order ID
+        function generateOrderID() {
+            const timestamp = Date.now();
+            const randomNumber = Math.floor(Math.random() * 1000);
+            return `ORD-${timestamp}-${randomNumber}`;
         }
     } catch (error) {
         console.error('Error initializing Stripe:', error);
