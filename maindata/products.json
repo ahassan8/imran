@@ -4,7 +4,7 @@
         "category": "Books",
         "title": "are you done?",
         "price": 44, 
-        "stock": 55,
+        "stock": 235,
         "description": "A thought-provoking book on spirituality and interfaith dialogue.",
         "image": "galaxy.jpg",
         "pdf": null
@@ -14,7 +14,7 @@
         "category": "Books",
         "title": "This is a Book with no Error",
         "price": 155,
-        "stock": 0,
+        "stock": 70,
         "description": "Coming soon - a book about overcoming challenges.",
         "image": "eren_paths.jpg",
         "pdf": null
