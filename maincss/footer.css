@@ -1,0 +1,81 @@
+/* Footer General Styling */
+.site-footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 10px;
+    border-top: 2px solid #444;
+}
+
+.footer-section {
+    flex: 1;
+    margin: 10px;
+    text-align: left;
+    min-width: 200px;
+}
+
+.footer-section h4 {
+    font-size: 1.2rem;
+    color: #ffd700;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-section ul li {
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+}
+
+.footer-section ul li a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-section ul li a:hover {
+    color: #ffd700;
+}
+
+/* Footer Bottom */
+.footer-bottom {
+    background-color: #222;
+    padding: 10px 0;
+    font-size: 0.9rem;
+}
+
+/* Donate and Contact Us Buttons */
+.contact-button, .donate-button {
+    display: inline-block;
+    background-color: #ffd700;
+    color: #000;
+    padding: 10px 15px;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 0.9rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+}
+
+.contact-button:hover, .donate-button:hover {
+    background-color: #e6c200;
+}

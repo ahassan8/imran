@@ -1,0 +1,120 @@
+/* General Styles for About Islam Section */
+#aboutis-section {
+    padding: 20px;
+    font-family: 'Roboto', sans-serif; /* Use a consistent font family */
+    color: #333; /* Text color */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+/* Intro Section */
+#aboutis-section .intro {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+#aboutis-section .intro h2 {
+    font-size: 2.5rem;
+    color: #00796b; /* A soothing green color */
+    margin-bottom: 10px;
+}
+
+#aboutis-section .intro p {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: #555;
+}
+
+/* Five Pillars Section */
+#aboutis-section .five-pillars {
+    margin-bottom: 20px;
+}
+
+#aboutis-section .five-pillars h2 {
+    font-size: 2rem;
+    color: #004d40; /* A darker green shade */
+    margin-bottom: 10px;
+}
+
+#aboutis-section .five-pillars ul {
+    list-style-type: disc;
+    padding-left: 20px;
+    margin: 0;
+}
+
+#aboutis-section .five-pillars li {
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+    color: #444;
+}
+
+/* Quran Section */
+#aboutis-section .quran {
+    margin-bottom: 20px;
+}
+
+#aboutis-section .quran h2 {
+    font-size: 2rem;
+    color: #3f51b5; /* A calm blue shade */
+    margin-bottom: 10px;
+}
+
+#aboutis-section .quran p {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: #555;
+}
+
+/* Islamic Values Section */
+#aboutis-section .values {
+    margin-bottom: 20px;
+}
+
+#aboutis-section .values h2 {
+    font-size: 2rem;
+    color: #795548; /* A warm brown shade */
+    margin-bottom: 10px;
+}
+
+#aboutis-section .values p {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: #555;
+}
+
+#aboutis-section .values ul {
+    list-style-type: square;
+    padding-left: 20px;
+    margin: 0;
+}
+
+#aboutis-section .values li {
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+    color: #444;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    #aboutis-section {
+        padding: 15px;
+    }
+
+    #aboutis-section .intro h2,
+    #aboutis-section .five-pillars h2,
+    #aboutis-section .quran h2,
+    #aboutis-section .values h2 {
+        font-size: 1.8rem;
+    }
+
+    #aboutis-section .intro p,
+    #aboutis-section .quran p,
+    #aboutis-section .values p {
+        font-size: 1rem;
+    }
+
+    #aboutis-section .five-pillars li,
+    #aboutis-section .values li {
+        font-size: 1rem;
+    }
+}

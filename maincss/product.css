@@ -1,0 +1,222 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 16px;
+}
+
+body {
+    font-family: "Montserrat", sans-serif;
+}
+
+.middle {
+    margin-top: 50px;
+    width: 100%;
+    height: 100%;
+    padding: 2px;
+}
+
+/* Product Container */
+#productContainer {
+    display: flex;
+    flex-direction: column; /* Stack sections vertically */
+    gap: 50px;
+    margin-top: 50px;
+}
+
+/* Category Section */
+.category-section {
+    margin-bottom: 20px;
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    width: 100%;
+    flex-wrap: wrap; /* Allow wrapping */
+    padding-left: 100px;
+    padding-right: 100px;
+}
+
+/* Category Header */
+.category-section h2 {
+    font-size: 15px;
+    text-align: center;
+    color: #333;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border-bottom: solid 1px rgb(53, 53, 53);
+    width: 100%;
+    font-weight: bold;
+    padding-bottom: 10px;
+}
+
+/* Product Grid (4 products per row, wrap to next line) */
+.product-grid {
+    display: flex;
+    flex-wrap: wrap; /* Enable wrapping to the next line */
+    justify-content: space-between; /* Space products evenly */
+    gap: 20px; /* Add space between products */
+}
+
+/* Product Card */
+.product-card {
+    border-radius: 8px;
+    width: 30%;
+    padding: 20px;
+    margin-bottom: 20px; /* Add spacing between rows */
+}
+
+
+/* Product Image */
+.product-image-container {
+    width: 100%;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.product-image {
+    max-width: 100%;
+    height: 200px;
+}
+
+/* Product Details */
+.product-details {
+    text-align: center;
+    width: 100%;
+}
+
+.product-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.product-available {
+    font-size: 12px;
+    color: #aaaaaa;
+    margin-bottom: 5px;
+}
+
+.product-price {
+    font-size: 15px;
+    font-weight: 400;
+    color: #4a4b4a;
+    margin-bottom: 15px;
+}
+
+
+
+.cart-status {
+    font-size: 14px;
+    color: #007bff;
+    display: none; /* Hidden by default */
+}
+/* Product Title Link Styling */
+.product-title-link {
+    text-decoration: none; /* Removes the underline */
+    color: inherit; /* Keeps the color consistent with the surrounding text */
+    cursor: pointer;
+}
+
+.product-title-link:hover {
+    color: #0056b3;
+}
+
+/* Button Container */
+.button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+/* Add to Cart Button */
+.atcart {
+    color: rgb(0, 0, 0);
+    border: black solid 1px;
+    padding: 10px 20px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-bottom: 5px;
+    width: 80%;
+    background-color: white;
+}
+
+.atcart:hover {
+    background-color: #00cf2d;
+    color: white;
+}
+
+/* View Cart Button */
+.view-cart {
+    background: none;
+    border: none;
+    color: #007bff;
+    cursor: pointer;
+    font-size: 14px;
+    text-decoration: underline;
+    margin-top: 5px;
+}
+
+.view-cart:hover {
+    color: #0056b3;
+}
+
+/* Reset Cart Button */
+.reset-cart-button {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 70px;
+    border-radius: 5px;
+}
+
+.reset-cart-button:hover {
+    background-color: darkred;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1024px) {
+    .product-card {
+        width: calc(33.33% - 20px); /* 3 products per row on medium screens */
+    }
+}
+
+@media (max-width: 768px) {
+    .product-card {
+        width: calc(50% - 20px); /* 2 products per row on small screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .product-card {
+        width: 100%; /* 1 product per row on very small screens */
+    }
+}
+
+
+@media (max-width: 768px) {
+    .product-card {
+        width: 100%; /* Make each product card take the full width */
+        margin-bottom: 20px; /* Add spacing between products */
+    }
+
+    .category-section {
+        display: flex;
+        flex-direction: column; /* Stack products vertically */
+        gap: 20px; /* Add spacing between products */
+    }
+}

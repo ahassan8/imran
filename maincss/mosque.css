@@ -1,0 +1,82 @@
+.container {
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    margin-bottom: 105px;
+}
+
+.search-section {
+    display: flex; /* Aligns items horizontally */
+    justify-content: center; /* Centers the input and button */
+    align-items: center; /* Vertically aligns the button with the input */
+    gap: 10px; /* Adds spacing between the input and button */
+    margin-bottom: 20px;
+}
+
+.search-section input[type="text"] {
+    padding: 10px 12px;
+    width: 100%;
+    max-width: 600px; /* Limits the input width */
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+    box-shadow: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.search-section input[type="text"]:focus {
+    border-color: #0077cc;
+    box-shadow: 0 0 4px rgba(0, 119, 204, 0.5);
+}
+
+.search-section button {
+    padding: 10px 15px;
+    font-size: 14px;
+    background-color: #0077cc;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.search-section button:hover {
+    background-color: #005fa3;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+
+.mosque-list {
+    margin-top: 20px;
+}
+
+.mosque {
+    background-color: white;
+    padding: 15px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.mosque h2 {
+    margin: 0 0 5px;
+    color: #333;
+    font-size: 18px;
+}
+
+.mosque p {
+    margin: 4px 0;
+    font-size: 14px;
+    color: #555;
+}
+
+.mosque a {
+    color: #0077cc;
+    text-decoration: none;
+}
+
+.mosque a:hover {
+    text-decoration: underline;
+}

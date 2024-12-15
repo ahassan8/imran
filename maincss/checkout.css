@@ -1,0 +1,199 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    display: flex;
+    flex-direction: column;
+}
+
+.cart-summary {
+    width: 50%; /* Take up 50% of the width */
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    background-color: #f8f8f8;
+}
+
+/* Cart Items Container */
+#cartItemsContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Space between items */
+}
+
+/* Individual Cart Item */
+.cart-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Space between title and price */
+    position: relative; /* Relative positioning for absolute elements like quantity */
+}
+
+/* Cart Item Image */
+.cart-item img {
+    width: 60px;
+    height: 60px;
+    margin-right: 15px;
+    border-radius: 8px; /* Optional: rounded corners */
+}
+
+/* Quantity Bubble on Right Top Corner of Image */
+.cart-item .quantity-bubble {
+    position: absolute;
+    top: -10px; /* Move it slightly up */
+    left: 45px; /* Positioned to the right corner of the image */
+    background-color: #333;
+    color: rgb(255, 255, 255);
+    border-radius: 50%;
+    padding: 5px 10px;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+/* Cart Item Details */
+.item-details {
+    display: flex;
+    justify-content: space-between; /* Create space between title and price */
+    flex: 1;
+    align-items: center;
+}
+
+.card-number-element {
+    margin-left: 5px;
+}
+
+/* Title on the Left */
+.item-details span.title {
+    font-size: 16px;
+    margin-right: auto; /* Align title to the left */
+}
+
+/* Price on the Right */
+.item-details span.price {
+    font-size: 14px;
+    font-weight: normal;
+    text-align: right; /* Align total price to the right */
+    margin-right: 190px;
+}
+
+/* Styling for the Total Section */
+.total-section {
+    display: block;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 800px;
+    font-style: normal;
+    font-size: 16px; /* Set the base font size */
+    color: #333; /* Text color */
+    padding: 10px; /* Add inner padding */
+    width: 100%; /* Adjust width based on container */
+}
+
+/* Styling for each row in the total section */
+.total-section p {
+    display: flex;
+    justify-content: space-between; /* Space between text and price */
+    margin: 10px 0; /* Add spacing between rows */
+    margin-right: 180px;
+
+}
+
+.total-amount{
+    font-weight: 900px;
+    font-size: 22px;
+}
+/* No Items Message */
+.no-items-message {
+    font-size: 20px;
+    text-align: center;
+    margin-top: 30px;
+    color: #555;
+}
+
+
+
+
+/* Style for radio buttons to display inline */
+/* Style for radio button container */
+#billingOptions {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Style for each label to align the radio bubble beside the text */
+#billingOptions label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    position: relative;
+    padding: 10px;
+    cursor: pointer;
+}
+
+/* Style for a border between the two selections */
+#billingOptions label + label {
+    border-left: 1px solid #ccc;
+    padding-left: 20px;
+}
+
+/* Additional styling to make the radio buttons look better */
+#billingOptions input[type="radio"] {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+}
+
+/* On hover, make the selection highlight */
+#billingOptions label:hover {
+    background-color: #f0f0f0;
+    border-radius: 5px;
+}
+
+/* Active selection styling */
+#billingOptions input[type="radio"]:checked + span {
+    font-weight: bold;
+}
+
+
+/* Style for the address input fields */
+.form-group {
+    margin-bottom: 15px;
+}
+
+/* Flexbox layout for City, State, and ZIP Code on one line */
+.city-state-zip {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.city-state-zip .form-group {
+    flex: 1; /* Make all fields take equal space */
+}
+
+.city-state-zip .form-group:nth-child(2) {
+    flex: 0.5; /* Reduce width of the state dropdown */
+}
+
+.city-state-zip .form-group:nth-child(3) {
+    flex: 0.75; /* Slightly reduce the width of the ZIP code field */
+}
+
+/* Ensure state dropdown is aligned with other fields */
+#billingState {
+    width: 100%;
+}
+
+
