@@ -17,10 +17,10 @@ app.use(express.static('main')); // Serve static files from the 'main' folder
 app.use(bodyParser.json()); // Parse JSON bodies
 
 // CORS configuration
-const allowedOrigins =
-    process.env.NODE_ENV === 'production'
-        ? ['https://imranfaith.com', 'https://api.imranfaith.com']
-        : ['http://localhost:5000', 'http://127.0.0.1:5500']; // Allow localhost origins for development
+const allowedOrigins = [
+    'https://imranfaith.com',
+    'https://api.imranfaith.com',
+]; // Production origins
 
 app.use(
     cors({
@@ -114,5 +114,7 @@ app.use((req, res) => {
 
 // Start server
 app.listen(PORT, () => {
-    console.log(`Server running in ${process.env.NODE_ENV || 'development'} mode on http://localhost:${PORT}`);
+    console.log(
+        `Server running in ${process.env.NODE_ENV || 'production'} mode on https://imranfaith.com`
+    );
 });
