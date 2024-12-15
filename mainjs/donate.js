@@ -59,7 +59,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
 
                 try {
-                    const paymentIntentResponse = await fetch('https://imranfaith.com/create-payment-intent', {
+                    const paymentIntentResponse = await fetch('https://api.imranfaith.com/create-payment-intent', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({ amount: donationAmountInCents }) // Send amount in cents
