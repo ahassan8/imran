@@ -75,7 +75,7 @@ async function handleContactFormSubmit(event) {
     try {
         // Construct email payload for admin
         const adminEmailContent = {
-            to: "princelegend00@gmail.com", // Replace with your admin email
+            to: "mysticvoiid2@gmail.com", // Replace with your admin email
             subject: `New Message from ${userName}`,
             html: `
                 <h1>Contact Form Submission</h1>
@@ -132,7 +132,7 @@ function displayStatusMessage(message, color) {
 // Function to send email by making a POST request to the server
 async function sendEmailToServer(emailPayload) {
     try {
-        const response = await fetch("http://localhost:5000/send-email", {
+        const response = await fetch("https://api.imranfaith.com/send-email", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(emailPayload),
