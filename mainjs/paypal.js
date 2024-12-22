@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', async function () {
     try {
         // Fetch PayPal client ID from the server
-        const response = await fetch('http://localhost:5000/get-paypal-client-id');
+        const response = await fetch('https://api.imranfaith.com/get-paypal-client-id');
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -203,7 +203,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 
     async function sendEmailToServer(emailPayload) {
         try {
-            const response = await fetch('http://localhost:5000/send-email', {
+            const response = await fetch('https://api.imranfaith.com/send-email', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(emailPayload),
@@ -220,7 +220,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 
     function createAdminEmailContent(orderID, cartItems, shipping, totalAmount) {
         return {
-            to: 'mysticvoiid2@gmail.com',
+            to: 'ahassan8844@gmail.com',
             subject: `New Order Received: ${orderID}`,
             html: `
                 <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto;">
