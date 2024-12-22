@@ -215,36 +215,17 @@ function addToCart(productId, price, title, image, stock) {
     }
 }
 
-// CSS for spinner (Add this to your CSS file)
-/*
-#cart-spinner .spinner-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(255, 255, 255, 0.8);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    z-index: 9999;
-}
+// Remove item and update cart instantly
+function removeItem(productId) {
+    let cart = JSON.parse(localStorage.getItem('cart')) || {};
 
-.spinner-circle {
-    border: 6px solid rgba(0, 0, 0, 0.1);
-    border-top: 6px solid #007BFF;
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    animation: spin 1s linear infinite;
+    if (cart[productId]) {
+        delete cart[productId];
+        localStorage.setItem('cart', JSON.stringify(cart));
+        renderCartItems();
+        updateCartCount();
+    }
 }
-
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-*/
 
 
 
