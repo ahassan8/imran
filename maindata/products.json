@@ -1,0 +1,28 @@
+[
+    {
+        "id": 1,
+        "category": "Cards",
+        "title": "Islamic Brochure",
+        "price": 200,
+        "stock": 1000,
+        "description": "This brochure is designed for both Muslims and non-Muslims who wish to learn about and share the teachings of Islam. It serves as an excellent tool for giving dawah and earning good deeds while providing a concise and accessible introduction to Islam. Perfect for those seeking a quick and informative read about the faith, its core beliefs, and practices.",
+        "image": "islamfull.jpeg",
+        "images": ["islamfull.jpeg", "turnislam.jpeg"],
+        "isEbook": false,
+        "pdf": null
+    },
+    {
+        "id": 2,
+        "category": "E-books",
+        "title": "Islamic Knowledge: Part 1 Names to Know ",
+        "price": 100,
+        "stock": 999999,
+        "description": "Islamic Knowledge: Part 1 - Names to Know is a comprehensive and enlightening guide designed to deepen your understanding of the Islamic faith. This book explores the 99 Names of Allah, as well as the names of prophets, angels, people, and animals mentioned in the Quran.",
+        "image": "coverk.png",
+        "images": ["coverk.png", "backk.png"],
+        "isEbook": true,
+        "pdf": "../pdf/islamick.pdf"
+    }
+]
+
+  

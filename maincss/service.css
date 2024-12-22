@@ -1,0 +1,95 @@
+/* General Services Section Styling */
+.services-section {
+    padding: 40px;
+    text-align: center;
+    margin: 20px auto;
+    width: 80%;
+    padding-top: 10px;
+}
+
+.services-section h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.services-section p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    color: #555;
+}
+
+/* Services Container */
+.services-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+/* Individual Service Items */
+.service-item {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.service-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.service-item h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #007bff; /* Accent color */
+}
+
+.service-item p {
+    font-size: 1rem;
+    color: #666;
+    line-height: 1.6;
+}
+
+.contact-link {
+    color: #800080; 
+    text-decoration: underline;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.contact-link:hover {
+    color: #5a005a; 
+    text-decoration: underline;
+}
+
+
+
+/* Return to Shopping Button */
+.return-to-shopping {
+    margin-top: 30px;
+    padding: 12px 20px;
+    font-size: 1rem;
+    background-color: #28a745; /* Green for return button */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.return-to-shopping:hover {
+    background-color: #218838; /* Darker green on hover */
+    transform: scale(1.05); /* Slight enlargement */
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+}
+
+.return-to-shopping:active {
+    transform: scale(1); /* Reset scale when clicked */
+    background-color: #1e7e34; /* Even darker green */
+}
+
+

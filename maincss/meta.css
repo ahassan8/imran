@@ -1,0 +1,144 @@
+
+/* Hide the menu button by default */
+.menu {
+    display: none;
+}
+
+/* Style for the menu button */
+.menu-button {
+    display: flex; /* Align items horizontally */
+    align-items: center; /* Center items vertically */
+    text-decoration: none; /* Remove underline from <a> */
+}
+
+/* Style for the image */
+.menu-button img {
+    width: 30px; /* Set image width */
+    height: 30px; /* Set image height */
+    margin-right: 8px; /* Add space between image and text */
+}
+
+/* Style for the menu text */
+.menu-button p {
+    font-size: 16px; /* Set font size */
+    margin: 0; /* Remove default paragraph margins */
+    padding: 0; /* Remove default padding */
+    color: #050505; /* Set text color */
+    font-size: 16px; /* Set font size */
+    margin: 0; /* Remove default paragraph margins */
+    padding: 0; /* Remove default padding */
+    color: #000000; /* Set text color */
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500px;
+    font-style: normal;
+}
+
+
+/* Pop-up Menu Container */
+.side-menu {
+    position: fixed; /* Position it fixed to the viewport */
+    left: -300px; /* Hide it off the left side initially */
+    top: 0;
+    height: 100%; /* Full height of the page */
+    width: 300px; /* Set the width of the menu */
+    background-color: rgba(0, 0, 0, 0.5);
+    transition: left 0.4s ease; /* Smooth transition for sliding in */
+    z-index: 1000; /* Ensure it's above other elements */
+    overflow-y: auto; /* Allow scrolling if content overflows */
+    padding-top: 20px; /* Add padding at the top */
+}
+
+/* Pop-up Menu Visible State */
+.side-menu.open {
+    left: 0; /* Slide it in from the left */
+}
+
+/* Close Menu Button Styling */
+.close-menu-button {
+    display: block;
+    background-color: transparent; /* Transparent background */
+    border: none; /* Remove default border */
+    color: #fff; /* White text color */
+    font-size: 24px; /* Font size for the "✖" icon */
+    text-align: left; /* Align text to the left */
+    margin: 10px 20px; /* Margin for spacing */
+    cursor: pointer; /* Show pointer on hover */
+}
+
+/* Style for the navigation items inside the pop-up menu */
+.side-nav-list {
+    list-style-type: none; /* Remove list bullets */
+    padding: 20px; /* Add some padding */
+    margin: 0; /* Remove default margin */
+}
+
+.side-nav-list li {
+    margin: 15px 0; /* Space between items */
+}
+
+.side-nav-list li a {
+    color: #fff; /* Text color */
+    text-decoration: none; /* Remove underline */
+    font-size: 18px; /* Font size */
+    display: block; /* Make links full width */
+    padding: 10px; /* Padding around the links */
+    border-bottom: 1px solid #444; /* Divider between items */
+    transition: background 0.3s ease; /* Smooth hover transition */
+}
+
+.side-nav-list li a:hover {
+    background-color: #444; /* Change background on hover */
+}
+
+@media (max-width: 1183px) {
+    .nav-left li {
+        display: none;
+    }
+
+    .menu {
+        display: block;
+    }
+
+        /* Style for the menu container */
+    .menu {
+        display: flex;
+        align-items: center; /* Center items vertically */
+        margin-left: 15px;
+        cursor: pointer;
+    }
+
+    /* Style for the menu button */
+    .menu-button {
+        display: flex; /* Align items horizontally */
+        align-items: center; /* Center items vertically */
+        text-decoration: none; /* Remove underline from <a> */
+    }
+
+    /* Style for the image */
+    .menu-button img {
+        width: 30px; /* Set image width */
+        height: 30px; /* Set image height */
+        margin-right: 8px; /* Add space between image and text */
+    }
+
+    /* Style for the menu text */
+    .menu-button p {
+        font-size: 16px; /* Set font size */
+        margin: 0; /* Remove default paragraph margins */
+        padding: 0; /* Remove default padding */
+        color: #000000; /* Set text color */
+        font-family: "Montserrat", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 500px;
+        font-style: normal;
+    }
+
+}
+
+
+@media (max-width: 750px) {
+    .nav-right li {
+        display: none;
+    }
+}

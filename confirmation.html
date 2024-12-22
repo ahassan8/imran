@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmation</title>
+    <link rel="stylesheet" href="../maincss/details.css"> <!-- Link to CSS -->
+    <link rel="stylesheet" href="../maincss/nav.css">
+    <link rel="stylesheet" href="../maincss/footer.css">
+    <link rel="stylesheet" href="../maincss/scart.css">
+    <link rel="stylesheet" href="../maincss/meta.css">
+    <link rel="stylesheet" href="../maincss/confirmation.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=New+Amsterdam&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Arsenal+SC:ital,wght@0,400;0,700;1,400;1,700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=New+Amsterdam&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@10..48,800&family=Caprasimo&family=Inter:wght@700&family=Open+Sans:ital@1&family=Oswald:wght@200;700&family=Tilt+Prism&family=Ultra&family=VT323&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <nav class="simple-nav">
+        <a href="index.html" class="home-link">
+            <img src="../icons/home.png" alt="Home" class="home-icon">
+        </a>
+    </nav>
+    
+    
+
+    <!-- Order Confirmation Section -->
+    <section class="confirmation">
+        <div class="confirmation-container">
+            <h2>Thank you for your order!</h2>
+            <p>Your order has been successfully processed.
+                We will notify you once your items have been shipped. 
+            </p>
+
+            <!-- Display the Unique Order ID -->
+            <p>Order ID: <span id="orderID"></span></p>
+
+            <!-- Display Order Total -->
+            <p>Total Amount: <span id="orderTotal"></span></p>
+
+            <!-- Display List of Purchased Items -->
+            <h3>Items Purchased:</h3>
+            <ul id="orderItems"></ul>
+
+            <div id="ebookSection" style="display: none;">
+                
+            </div>
+
+            <h3>Shipping Information:</h3>
+            <p>Name: <span id="shippingName"></span></p>
+            <p>Address: <span id="shippingAddress"></span></p>
+
+            
+            <a class="continue-button" href="index.html">Continue Shopping</a>
+        </div>
+    </section>
+
+    <script src="../mainjs/confirmation.js"></script> <!-- Link to your confirmation.js file -->
+</body>
+</html>

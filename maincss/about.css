@@ -1,0 +1,64 @@
+/* About Section Styling */
+.about-section {
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+
+.about-section h1 {
+    font-size: 2rem;
+    color: #2c3e50;
+    margin-bottom: 15px;
+}
+
+.about-section h2 {
+    font-size: 1.5rem;
+    color: #34495e;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.about-section p {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.about-section ul {
+    list-style-type: disc;
+    padding-left: 20px;
+    text-align: left;
+    color: #555;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin: 15px 0;
+}
+
+.about-section ul li {
+    margin-bottom: 10px;
+}
+
+.about-section a {
+    color: #0077cc;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.about-section a:hover {
+    color: #005fa3;
+    text-decoration: underline;
+}
+
+/* Center alignment for the About Section */
+.about-section-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}

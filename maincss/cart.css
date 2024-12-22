@@ -1,0 +1,408 @@
+.details-navbar {
+    height: 40px; /* Adjust height as needed */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 20px;
+    position: sticky;
+    top: 0;
+    z-index: 1000; /* Ensure it stays above other elements */
+}
+
+.details-navbar-container {
+    position: relative;
+    width: 100%;
+    max-width: 1200px; /* Optional max-width for centered layout */
+    display: flex;
+    align-items: center;
+}
+
+.back-arrow {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 24px; /* Adjust size as needed */
+    height: auto;
+    cursor: pointer;
+}
+
+.nav-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    flex-grow: 1; /* Ensures logo stays in the center */
+}
+
+.nav-logo a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #333;
+}
+
+.nav-logo h4 {
+    margin: 0 8px; /* Add spacing between the text and the logo */
+    font-size: 20px; /* Adjust font size for consistency */
+    font-weight: bold; /* Make the text bold */
+    color: #007bff;
+    white-space: nowrap; /* Prevent wrapping */
+}
+
+.nav-logo img {
+    width: 10px; /* Set a fixed width for the logo */
+    height: auto; /* Maintain aspect ratio */
+    object-fit: contain; /* Ensure the logo fits well */
+}
+
+.home-icon {
+    width: 30px;
+}
+
+.cart-icon {
+    margin-right: 70px;
+    margin-top: 50px;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.cart-icon img {
+    width: 24px; /* Size of cart icon */
+    height: auto;
+    margin-right: 5px; /* Space between icon and count */
+}
+
+#cart-count {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #000; /* Text color for the cart count */
+    margin-left: 30px; /* Space between the cart icon and count */
+}
+
+.cartp {
+    margin-left: 100px;
+    margin-top: 50px;
+}
+
+/* Spinner styles */
+#cart-spinner {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 99999;
+    display: none; /* Initially hidden */
+}
+
+#cart-spinner .spinner-container {
+    position: relative;
+    width: 60px;
+    height: 60px;
+}
+
+#cart-spinner .spinner-container div {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background: gray;
+    border-radius: 50%;
+    animation: teardrop-spin 1.2s linear infinite;
+    transform-origin: 30px 30px;
+}
+
+#cart-spinner .spinner-container div:nth-child(1) {
+    transform: rotate(0deg) translate(24px);
+    animation-delay: -1.1s;
+}
+#cart-spinner .spinner-container div:nth-child(2) {
+    transform: rotate(45deg) translate(24px);
+    animation-delay: -1s;
+}
+#cart-spinner .spinner-container div:nth-child(3) {
+    transform: rotate(90deg) translate(24px);
+    animation-delay: -0.9s;
+}
+#cart-spinner .spinner-container div:nth-child(4) {
+    transform: rotate(135deg) translate(24px);
+    animation-delay: -0.8s;
+}
+#cart-spinner .spinner-container div:nth-child(5) {
+    transform: rotate(180deg) translate(24px);
+    animation-delay: -0.7s;
+}
+#cart-spinner .spinner-container div:nth-child(6) {
+    transform: rotate(225deg) translate(24px);
+    animation-delay: -0.6s;
+}
+#cart-spinner .spinner-container div:nth-child(7) {
+    transform: rotate(270deg) translate(24px);
+    animation-delay: -0.5s;
+}
+#cart-spinner .spinner-container div:nth-child(8) {
+    transform: rotate(315deg) translate(24px);
+    animation-delay: -0.4s;
+}
+
+#cart-spinner p {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #555;
+    text-align: center;
+}
+
+/* Disable background interactions */
+body.spinner-active {
+    pointer-events: none; /* Disable all interactions */
+    user-select: none; /* Prevent text selection */
+}
+
+/* Keyframe animation for teardrop rotation */
+@keyframes teardrop-spin {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+
+
+
+.cart-title {
+    padding: 20px;
+    border-bottom: 1px solid rgb(211, 211, 211);
+}
+
+
+.cart-container {
+    display: flex;
+    margin-bottom: 450px;
+}
+
+/* Cart Items Container */
+.cart-items {
+    width: 70%;
+    margin: 20px auto;
+    padding: 20px;
+}
+
+/* Individual Cart Item */
+.cart-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+}
+
+.cart-item:last-child {
+    border-bottom: none; /* Remove border from the last item */
+}
+
+.cart-item-image {
+    flex-basis: 15%; /* Adjust image container width */
+    text-align: center;
+}
+
+.cart-item-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.cart-item-details {
+    flex-basis: 55%; /* Adjust item details container width */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cart-item-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #555;
+    margin-left: -220px;
+    width: 200px;
+}
+
+/* Quantity Controls Container */
+.cart-quantity-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+/* Buttons for Quantity Controls */
+.cart-quantity-controls button {
+    width: 32px;
+    height: 32px;
+    background-color: white;
+    border: 1px solid #ddd;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+}
+
+.cart-quantity-controls button:hover {
+    background-color: #d6d6d6;
+}
+
+/* Quantity Input Field */
+.cart-quantity-controls input[type="number"] {
+    width: 70px;
+    height: 32px;
+    border: 1px solid #ddd;
+    text-align: center;
+    font-size: 16px;
+    margin: 0 5px;
+    border-radius: 4px;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.cart-quantity-controls input[type="number"]:focus {
+    border-color: #0098be;
+}
+.cart-item-price {
+    font-size: 18px;
+    font-weight: 600;
+    color: #777;
+    margin: 10px 0;
+    text-align: right;
+    flex-basis: 15%; /* Adjust price container width */
+}
+
+/* For modern browsers */
+input[type="number"]::-webkit-inner-spin-button, 
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+
+.remove-item {
+    color: red;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    font-size: 14px;
+    margin-top: 5px;
+    text-decoration: underline;
+    flex-basis: 10%; /* Adjust remove button container width */
+}
+
+.remove-item:hover {
+    text-decoration: none;
+    color: darkred;
+}
+
+/* cart total checkout*/
+.cart-total-container {
+    background-color: #ffffff; /* Light background for contrast */
+    padding: 20px;
+    border-radius: 10px; /* Rounded corners for a modern look */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    text-align: center; /* Center-align the text */
+    margin: 20px auto; /* Space around the container */
+    width: 500px;
+    font-family: Arial, sans-serif;
+}
+
+.cart-total-container p {
+    color: #777; /* Subtle color for informational text */
+    font-size: 14px;
+    margin-bottom: 10px;
+    
+}
+
+.cart-total-container h2 {
+    color: #333; /* Stronger color for subtotal */
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    display: flex; /* Use flexbox for alignment */
+    justify-content: space-between; /* Create space between text and total */
+    align-items: center;
+}
+
+.cart-total-container h2 span {
+    color: #000000; /* Highlight the subtotal in a noticeable color */
+    font-weight: bold;
+    font-size: 22px; /* Slightly larger font for emphasis */
+    margin-left: 50px; /* Optional, use if you need an exact gap */
+}
+
+
+.checkout-button {
+    width: 100%;
+    background-color: #000000; /* Primary color for the button */
+    color: #fff; /* White text for contrast */
+    font-size: 16px;
+    font-weight: bold;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px; /* Rounded button */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.checkout-button:hover {
+    background-color: #242424; /* Darker blue on hover for interactivity */
+}
+
+
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .cart-items {
+        width: 95%;
+    }
+
+    .cart-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .cart-item-image, .cart-item-details {
+        flex-basis: 100%;
+        text-align: left;
+        padding: 10px 0;
+    }
+
+    .cart-item-image img {
+        width: 70px;
+        height: 70px;
+    }
+
+    .cart-total-container {
+        width: 95%;
+    }
+}
+
+@media (max-width: 480px) {
+    .cart-item-title {
+        font-size: 16px;
+    }
+
+    .cart-item-price {
+        font-size: 14px;
+    }
+
+    .checkout-button {
+        font-size: 16px;
+        padding: 12px 25px;
+    }
+}

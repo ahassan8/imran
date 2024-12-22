@@ -1,0 +1,145 @@
+/* Payment Section Styling */
+.payment-section {
+    padding: 20px;
+    max-width: 500px; /* Restrict width */
+    margin: 20px auto; /* Center the section */
+}
+
+/* User Summary Box */
+.user-summary-box {
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.user-summary-box h4 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #333;
+}
+
+.user-summary-box p {
+    font-size: 14px;
+    margin: 5px 0;
+    color: #555;
+}
+
+/* Edit Information Button */
+.edit-info {
+    display: inline-block;
+    margin-top: 15px;
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    text-align: center;
+}
+
+.edit-info:hover {
+    background-color: #0056b3;
+    color: white;
+}
+
+/* Center the button horizontally */
+.edit-info {
+    display: block;
+    width: 100%; /* Make the button take full width */
+    text-align: center;
+}
+
+/* Container for the payment options */
+#paymentOptions {
+    margin-top: 20px;
+    width: 100%;
+    text-align: left; /* Align everything to the left */
+}
+
+/* Title Styling */
+#paymentOptions h4 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+/* Styling for the payment methods */
+.payment-methods {
+    display: flex;
+    flex-direction: column; /* Display options vertically */
+    gap: 10px; /* Add spacing between options */
+}
+
+/* Styling each label as a card-like box */
+.payment-methods label {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    border: 2px solid #ddd; /* Add border */
+    border-radius: 5px; /* Rounded corners */
+    background-color: #ffffff; /* White background */
+    cursor: pointer; /* Indicate it's clickable */
+    transition: all 0.3s ease; /* Add smooth hover effect */
+    width: 300px; /* Set width for the card */
+}
+
+/* Add square styling for the radio button */
+.payment-methods label input[type="radio"] {
+    appearance: none; /* Remove default styling */
+    width: 5px;
+    height: 5px;
+    border: 2px solid #ccc; /* Border for the square */
+    border-radius: 4px; /* Make it a square */
+    margin-right: 10px; /* Spacing between square and text */
+    cursor: pointer; /* Pointer cursor for clickable effect */
+    transition: all 0.2s ease-in-out;
+}
+
+/* When the radio is selected */
+.payment-methods label input[type="radio"]:checked {
+    background-color: #007bff; /* Blue background for selected */
+    border-color: #007bff; /* Match border color to background */
+}
+
+/* Hover effect for label */
+.payment-methods label:hover {
+    border-color: #007bff; /* Change border color on hover */
+    background-color: #eef5ff; /* Light blue background on hover */
+}
+
+/* Styling the text next to the square */
+.payment-methods label span {
+    font-size: 16px;
+    font-weight: normal;
+    color: #333; /* Default text color */
+}
+
+/* Hover effect for text */
+.payment-methods label:hover span {
+    font-weight: bold; /* Bold text on hover */
+    color: #007bff; /* Blue text on hover */
+}
+
+
+
+
+
+/* Responsive Design for Smaller Screens */
+@media (max-width: 768px) {
+    .payment-section {
+        padding: 15px;
+        margin: 10px;
+    }
+
+    .user-summary-box {
+        padding: 10px;
+    }
+
+    .edit-info {
+        font-size: 12px;
+        padding: 8px 16px;
+    }
+}
