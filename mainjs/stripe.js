@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", async function () {
     try {
         // Fetch the Stripe public key from the server
-        const response = await fetch('http://localhost:5000/get-stripe-publishable-key');
+        const response = await fetch('https://api.imranfaith.com/get-stripe-publishable-key');
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -157,7 +157,7 @@ document.addEventListener("DOMContentLoaded", async function () {
                 spinner.style.display = 'block';
         
                 // Step 1: Create a Payment Intent
-                const paymentIntentResponse = await fetch('http://localhost:5000/create-payment-intent', {
+                const paymentIntentResponse = await fetch('https://api.imranfaith.com/create-payment-intent', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ amount: Math.round(totalAmount * 100) }),
@@ -254,7 +254,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
         function createAdminEmail(orderID, cartItems, shipping, totalAmount) {
             return {
-                to: 'mysticvoiid2@gmail.com',
+                to: 'ahassan8844@gmail.com',
                 subject: `New Order: ${orderID}`,
                 html: `
                     <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto;">
