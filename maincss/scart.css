@@ -450,7 +450,7 @@ body {
     .cart-item {
         flex-direction: column; /* Stack items vertically */
         align-items: flex-start;
-        margin-left: 200px;
+        margin-left: 380px;
     }
 
     .cart-item img {
