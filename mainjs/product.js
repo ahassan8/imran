@@ -44,9 +44,6 @@ function fetchAndRenderProducts() {
                         let currentImageIndex = 0;
 
                         productDiv.innerHTML = `
-                            <p>This is a newly made website, we have more to come. <br>
-                                Enjoy what we have so far!
-                            </p>
                             <div class="product-image-container">
                                 <div class="slideshow" onclick="redirectToDetails(${product.id})" style="cursor: pointer;">
                                     <img src="../images/${images[0]}" alt="${product.title}" class="product-image" id="slideshow-${product.id}" style="cursor: pointer;">
