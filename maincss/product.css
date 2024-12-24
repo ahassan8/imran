@@ -99,10 +99,12 @@ body {
     color: #333;
 }
 
-.product-available {
-    font-size: 12px;
-    color: #aaaaaa;
-    margin-bottom: 5px;
+.product-stock {
+    font-size: 0.9em; /* Adjust font size for smaller text */
+    color: grey; /* Set the text color to grey */
+    margin-top: 5px; /* Add some space above */
+    margin-bottom: 5px; /* Add some space below */
+    font-weight: 400; /* Set a light font weight for a subtle appearance */
 }
 
 .product-price {
