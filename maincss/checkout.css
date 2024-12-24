@@ -1,3 +1,65 @@
+.details-navbar {
+    height: 50px; /* Adjust height as needed */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 20px;
+    position: sticky;
+    top: 0;
+    z-index: 1000; /* Ensure it stays above other elements */
+}
+
+.details-navbar-container {
+    position: relative;
+    width: 100%;
+    max-width: 1200px; /* Optional max-width for centered layout */
+    display: flex;
+    align-items: center;
+}
+
+.back-arrow {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 24px; /* Adjust size as needed */
+    height: auto;
+    cursor: pointer;
+}
+
+.nav-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    flex-grow: 1; /* Ensures logo stays in the center */
+}
+
+.nav-logo a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #333;
+}
+
+.nav-logo h4 {
+    margin: 0 8px; /* Add spacing between the text and the logo */
+    font-size: 20px; /* Adjust font size for consistency */
+    font-weight: bold; /* Make the text bold */
+    color: #007bff;
+    white-space: nowrap; /* Prevent wrapping */
+}
+
+.nav-logo img {
+    width: 10px; /* Set a fixed width for the logo */
+    height: auto; /* Maintain aspect ratio */
+    object-fit: contain; /* Ensure the logo fits well */
+}
+
+.home-icon {
+    width: 30px;
+}
+
 /* General Reset */
 * {
     margin: 0;
