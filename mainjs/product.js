@@ -55,11 +55,6 @@ function fetchAndRenderProducts() {
                                 <a href="../details.html?id=${product.id}" class="product-title-link">
                                     <h4 class="product-title">${product.title}</h4>
                                 </a>
-                                ${
-                                    product.category !== 'E-books'
-                                        ? `<p class="product-stock">${product.stock} available in stock`
-                                        : ''
-                                }
                                 <p class="product-price">$${(product.price / 100).toFixed(2)}</p>
                                 <div class="button-container">
                                     <button class="atcart" 
@@ -171,4 +166,3 @@ function resetCart() {
 
 // Call fetchAndRenderProducts on page load
 fetchAndRenderProducts();
-
