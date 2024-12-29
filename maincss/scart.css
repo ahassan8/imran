@@ -13,7 +13,13 @@ body {
     font-style: normal;
 }
 
-
+/* Price Styling */
+.cart-item-price {
+    font-size: 12px;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: #333;
+}
 /* Spinner styles */
 #cart-spinner {
     position: absolute;
