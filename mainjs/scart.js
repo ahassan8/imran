@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const cartIcon = document.querySelector('.cart-icon');
     const closeCartButton = document.querySelector('.close-cart');
     const overlay = document.getElementById('overlay');
-    const FOUR_MINUTES = 4 * 60 * 1000; // 4 minutes in milliseconds
+    const TWO_DAYS = 2 * 24 * 60 * 60 * 1000; 
 
     // Check and clear data if the session has expired
     checkAndClearSession();
@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!sessionStart) {
             // If no session start time exists, set it now
             localStorage.setItem('sessionStart', now);
-        } else if (now - sessionStart > FOUR_MINUTES) {
+        } else if (now - sessionStart > TWO_DAYS) {
             // If more than 4 minutes have passed, clear data and refresh
             clearAllDataAndRefresh();
         }
