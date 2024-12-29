@@ -414,7 +414,7 @@ body {
         padding: 12px;
     }
 
-    .quantity-select {
+    .quantity-select-cart {
         font-size: 14px;
         padding: 6px;
         width: 100%; /* Ensure full width in smaller screens */
@@ -448,7 +448,7 @@ body {
         padding: 10px;
     }
 
-    .quantity-select {
+    .quantity-select-cart {
         font-size: 13px;
         padding: 5px;
         width: 100%;
@@ -490,7 +490,7 @@ body {
         padding: 10px;
     }
 
-    .quantity-select {
+    .quantity-select-cart {
         font-size: 12px;
         padding: 4px;
         width: 100%;
@@ -500,7 +500,7 @@ body {
 
 
 
-.quantity-select {
+.quantity-select-cart {
     appearance: none; /* Removes default browser styles */
     -moz-appearance: none;
     -webkit-appearance: none;
@@ -522,17 +522,17 @@ body {
     margin-bottom: 15px;
 }
 
-.quantity-select:hover {
+.quantity-select-cart:hover {
     border-color: #007bff;
 }
 
-.quantity-select:focus {
+.quantity-select-cart:focus {
     outline: none;
     border-color: #007bff;
     box-shadow: 0 0 2px rgba(0, 123, 255, 0.5);
 }
 
-.quantity-select option {
+.quantity-select-cart option {
     padding: 5px;
     font-size: 14px;
 }
