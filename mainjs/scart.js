@@ -88,7 +88,7 @@ function renderCartItems() {
 
         // Generate dropdown options dynamically
         const options = [
-            { quantity: 25, price: 1 },
+            { quantity: 25, price: 50 },
             { quantity: 50, price: 100 },
             { quantity: 100, price: 200 },
             { quantity: 250, price: 300 },
