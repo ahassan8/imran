@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let isProceedingToPayment = true; // State to track button behavior
 
     // Fetch Stripe and PayPal keys from the server
-    fetch('http://localhost:5000/get-stripe-publishable-key')
+    fetch('https://api.imranfaith.com/get-stripe-publishable-key')
         .then(response => response.json())
         .then(data => {
             stripePublicKey = data.publishableKey;
@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
 
     // Fetch PayPal Client ID and render PayPal button
-    fetch('http://localhost:5000/get-paypal-client-id')
+    fetch('https://api.imranfaith.com/get-paypal-client-id')
         .then(response => response.json())
         .then(data => {
             paypalClientId = data.clientId;
@@ -125,7 +125,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const donationNote = document.getElementById("donation-note").value || "No note provided.";
 
         const emailPayload = {
-            to: "mysticvoiid2@gmail.com", // Replace with your admin email
+            to: "ahassan8844@gmail.com", // Replace with your admin email
             subject: "New Donation Received",
             html: `
                 <h1>New Donation</h1>
@@ -135,7 +135,7 @@ document.addEventListener("DOMContentLoaded", function () {
         };
 
         try {
-            await fetch("http://localhost:5000/send-email", {
+            await fetch("https://api.imranfaith.com/send-email", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(emailPayload)
