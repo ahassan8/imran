@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let isProceedingToPayment = true; // State to track button behavior
 
     // Fetch Stripe and PayPal keys from the server
-    fetch('http://localhost:5000/get-stripe-publishable-key')
+    fetch('https://api.imranfaith.com/get-stripe-publishable-key')
         .then(response => response.json())
         .then(data => {
             stripePublicKey = data.publishableKey;
@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function () {
              document.getElementById("pay-now-button").addEventListener("click", async function (event) {
                 event.preventDefault();
                 try {
-                    const response = await fetch('http://localhost:5000/create-payment-intent', {
+                    const response = await fetch('https://api.imranfaith.com/create-payment-intent', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({ amount: donationAmountInCents })
@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
 
     // Fetch PayPal Client ID and render PayPal button
-    fetch('http://localhost:5000/get-paypal-client-id')
+    fetch('https://api.imranfaith.com/get-paypal-client-id')
         .then(response => response.json())
         .then(data => {
             paypalClientId = data.clientId;
