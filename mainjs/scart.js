@@ -114,7 +114,7 @@ function renderCartItems() {
                 <div class="quantity-div">
                 <label for="cart-quantity-select-${index}" class="quantity-label"></label>
                 <select id="cart-quantity-select-${index}" 
-                        class="quantity-select" 
+                        class="quantity-select-cart" 
                         onchange="updateCartSelection(${index}, this.value)">
                         ${options}
                 </select>
