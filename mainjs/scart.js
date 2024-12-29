@@ -161,11 +161,3 @@ function removeItem(index) {
     renderCartItems(); // Re-render the cart items
     updateCartCount(); // Update the cart count
 }
-
-
-
-
-
-
-
-
