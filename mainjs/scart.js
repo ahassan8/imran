@@ -111,12 +111,14 @@ function renderCartItems() {
             <img src="../images/${image}" alt="${title}" class="cart-item-image">
             <div class="cart-item-details">
                 <p class="cart-item-title">${title}</p>
+                <div>
                 <label for="cart-quantity-select-${index}" class="quantity-label"></label>
                 <select id="cart-quantity-select-${index}" 
                         class="quantity-select" 
                         onchange="updateCartSelection(${index}, this.value)">
-                    ${options}
+                        ${options}
                 </select>
+                </div>
                 <div class="cart-item-price-container">
                 <p class="cart-item-price">$ ${(price / 100).toFixed(2)}</p>
                 <button class="remove-item" onclick="removeItem(${index})">Remove</button>               
