@@ -220,7 +220,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 
     function createAdminEmailContent(orderID, cartItems, shipping, totalAmount) {
         return {
-            to: 'mysticvoiid2@gmail.com',
+            to: 'ahassan8844@gmail.com',
             subject: `New Order Received: ${orderID}`,
             html: `
                 <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto;">
