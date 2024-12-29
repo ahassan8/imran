@@ -121,11 +121,6 @@ function renderCartItems() {
     cartTotalElement.textContent = `$${(totalAmount / 100).toFixed(2)}`;
 }
 
-
-
-
-
-
 // Update cart count
 function updateCartCount() {
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
