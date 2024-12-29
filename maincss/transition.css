@@ -1,0 +1,16 @@
+/* Hide page content until fully loaded */
+body {
+    visibility: hidden; /* Hide page content initially */
+}
+
+/* Show loading state */
+.page-loading {
+    pointer-events: none; /* Disable interactions while "loading" */
+    cursor: wait; /* Change cursor to loading state */
+}
+
+body.page-loading {
+    cursor: wait; /* Show loading cursor */
+    pointer-events: none; /* Disable interactions during load */
+}
+

@@ -1,0 +1,481 @@
+.details-navbar {
+    height: 50px; /* Adjust height as needed */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 20px;
+    position: sticky;
+    top: 0;
+    z-index: 1000; /* Ensure it stays above other elements */
+}
+
+.details-navbar-container {
+    position: relative;
+    width: 100%;
+    max-width: 1200px; /* Optional max-width for centered layout */
+    display: flex;
+    align-items: center;
+}
+
+.back-arrow {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 24px; /* Adjust size as needed */
+    height: auto;
+    cursor: pointer;
+}
+
+.nav-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    flex-grow: 1; /* Ensures logo stays in the center */
+}
+
+.nav-logo a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #333;
+}
+
+.nav-logo h4 {
+    margin: 0 8px; /* Add spacing between the text and the logo */
+    font-size: 20px; /* Adjust font size for consistency */
+    font-weight: bold; /* Make the text bold */
+    color: #007bff;
+    white-space: nowrap; /* Prevent wrapping */
+}
+
+.nav-logo img {
+    width: 10px; /* Set a fixed width for the logo */
+    height: auto; /* Maintain aspect ratio */
+    object-fit: contain; /* Ensure the logo fits well */
+}
+
+.home-icon {
+    width: 30px;
+}
+/* Product Title Styling */
+h1 {
+    font-family: 'Montserrat', sans-serif; /* Use a modern and clean font */
+    font-size: 2rem; /* Large and noticeable size */
+    font-weight: 700; /* Bold for emphasis */
+    color: #333; /* Dark gray for readability */
+    text-align: center; /* Center align the title */
+    margin: 20px 0; /* Space above and below */
+    text-transform: uppercase; /* Make the title uppercase */
+    letter-spacing: 1.5px; /* Add spacing between letters */
+    border-bottom: 2px solid #ff5722; /* Underline with accent color */
+    display: inline-block; /* Ensure border matches the text width */
+    left: 50%;
+}
+
+.cart-icon {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.cart-icon img {
+    width: 24px; /* Size of cart icon */
+    height: auto;
+    margin-right: 5px; /* Space between icon and count */
+}
+
+#cart-count {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #000; /* Text color for the cart count */
+    margin-left: 5px; /* Space between the cart icon and count */
+}
+
+/* Main Product Image Container */
+.main-image-container {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.main-image {
+    max-width: 100%;
+    max-height: 400px;
+    cursor: pointer;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+}
+
+.main-image:hover {
+    transform: scale(1.05); /* Slight zoom-in effect */
+}
+
+/* Thumbnail Container */
+.thumbnail-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.thumbnail {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border: 2px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+.thumbnail:hover {
+    border-color: #007bff; /* Highlight border */
+    transform: scale(1.1); /* Slight zoom effect */
+}
+
+/* Image Overlay for Main Image Zoom */
+.image-overlay {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8); /* Semi-transparent black background */
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.overlay-image {
+    max-width: 800px; /* Much larger image width */
+    max-height: 600px; /* Much larger image height */
+    width: 90%; /* Ensure it scales properly for smaller screens */
+    height: auto; /* Maintain aspect ratio */
+}
+
+.image-overlay:hover {
+    cursor: pointer; /* Indicate that the overlay is clickable */
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .main-image {
+        max-height: 300px;
+    }
+
+    .thumbnail {
+        width: 60px;
+        height: 60px;
+    }
+
+    .overlay-image {
+        max-width: 80%;
+        max-height: 80%;
+    }
+}
+
+
+/* Slideshow Image Styling */
+.product-image-container {
+    position: relative;
+    width: 100%; /* Adjust to container width */
+    max-width: 500px; /* Set max width for images */
+    margin: 0 auto; /* Center the image container */
+}
+
+
+.product-details {
+    display: flex;
+    flex-direction: row;
+}
+.slideshow img {
+    width: 100%; /* Image scales to container width */
+    height: auto; /* Maintain aspect ratio */
+    object-fit: contain; /* Ensures the image fits within the bounds */
+    border-radius: 8px; /* Optional: Rounded corners for aesthetics */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Add shadow for depth */
+}
+
+/* Slideshow Arrow Buttons */
+.slideshow-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    color: white;
+    border: none;
+    font-size: 20px;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 2;
+    border-radius: 50%; /* Circular buttons */
+    display: none; /* Initially hidden */
+}
+
+/* Show arrows on hover */
+.product-image-container:hover .slideshow-arrow {
+    display: block; /* Show arrows when hovering */
+}
+
+/* Left Arrow */
+.left-arrow {
+    left: 10px;
+}
+
+/* Right Arrow */
+.right-arrow {
+    right: 10px;
+}
+
+/* Other Product Images */
+.other-product-image {
+    width: 150px; /* Set a fixed width for smaller images */
+    height: auto; /* Maintain aspect ratio */
+    object-fit: cover; /* Crop if needed to fit the dimensions */
+    border-radius: 4px; /* Optional: Rounded corners */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: Shadow for depth */
+    margin: 10px;
+    cursor: pointer;
+}
+
+/* For Responsive Design */
+@media (max-width: 768px) {
+    .product-image-container {
+        max-width: 300px; /* Smaller images for mobile devices */
+    }
+
+    .other-product-image {
+        width: 120px; /* Adjust size for smaller screens */
+    }
+
+    .slideshow-arrow {
+        font-size: 16px; /* Smaller arrow buttons */
+        padding: 8px;
+    }
+}
+
+
+
+
+
+
+
+
+/* Main Product Detail Container */
+.product-detail-container {
+    display: flex;
+    flex-direction: column; /* Stack main product and other products */
+    align-items: center;
+    padding: 20px;
+    
+}
+
+/* Product Detail Wrapper */
+.product-detail-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    max-width: 900px;
+    margin-bottom: 30px; /* Add spacing below the main product */
+}
+
+/* Product Image */
+.product-image img {
+    max-width: 500px; /* Restrict the width */
+    max-height: 500px; /* Restrict the height */
+    width: 100%; /* Ensure it scales properly */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 8px;
+    object-fit: contain;
+    margin-right: 20px; /* Spacing between image and product info */
+}
+
+/* Product Info */
+.product-info {
+    flex: 1;
+    padding: 20px;
+}
+
+.product-title {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.more-products-header {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    text-align: left;
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+
+.product-description {
+    font-size: 16px;
+    margin: 10px 0;
+    color: #555;
+}
+
+.product-price {
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 5px;
+    color: #333;
+}
+
+/* Quantity Controls */
+.quantity-container {
+    display: flex;
+    align-items: center;
+    margin: 15px 0;
+}
+
+.quantity-control {
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+    border: 1px solid #ddd;
+    background-color: #fff;
+    cursor: pointer;
+    border-radius: 4px;
+    margin: 0 5px;
+    transition: background-color 0.3s;
+}
+
+.quantity-control:hover {
+    background-color: #e0e0e0;
+}
+
+.quantity-input {
+    width: 60px;
+    height: 40px;
+    font-size: 18px;
+    text-align: center;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+/* Buttons */
+.button-container {
+    margin-top: 10px;
+}
+
+.buy-now,
+.atcart {
+    width: 100%;
+    padding: 15px;
+    font-size: 18px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.buy-now {
+    background-color: #007bff;
+}
+
+.buy-now:hover {
+    background-color: #0056b3;
+}
+
+.atcart {
+    background-color: #28a745;
+    margin-bottom: 10px;
+}
+
+.atcart:hover {
+    background-color: #218838;
+}
+
+/* Other Products Section */
+.other-products-container {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* Five products per row */
+    gap: 20px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 900px;
+}
+
+/* Individual Product Card */
+.other-product-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.other-product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.other-product-image {
+    max-width: 100%;
+    height: 100px;
+    object-fit: contain;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.other-product-title {
+    font-size: 14px;
+    color: #333;
+    text-align: center;
+    margin-top: 5px;
+    font-weight: bold;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .product-detail-wrapper {
+        flex-direction: column;
+        align-items: center;
+        padding: 10px;
+    }
+
+    .product-image img {
+        max-width: 100%;
+        margin: 0;
+        margin-bottom: 20px; /* Add spacing below the image */
+    }
+
+    .product-info {
+        padding: 10px;
+    }
+
+    .other-products-container {
+        grid-template-columns: repeat(2, 1fr); /* Two products per row for smaller screens */
+        gap: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .other-products-container {
+        grid-template-columns: 1fr; /* One product per row for very small screens */
+    }
+}
+
