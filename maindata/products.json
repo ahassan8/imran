@@ -1,0 +1,66 @@
+[
+    {
+        "id": 1,
+        "category": "brochures",
+        "title": "The Prophets",
+        "description": "This brochure provides a concise and enlightening overview of the 25 prophets mentioned in the Qur'an. It serves as a valuable resource for both Muslims and non-Muslims seeking to deepen their understanding of Islamic teachings.",
+        "image": "prophets1.png",
+        "images": [
+            "prophets2.png",
+            "prophets3.png",
+            "prophets0.png"
+        ],
+        "selections": [
+            { "quantity": 25, "price": 50 },
+            { "quantity": 50, "price": 100 },
+            { "quantity": 100, "price": 200 },
+            { "quantity": 250, "price": 300 },
+            { "quantity": 500, "price": 500 },
+            { "quantity": 1000, "price": 800 }
+        ]
+    },
+    {
+        "id": 2,
+        "category": "brochures",
+        "title": "Who is Allah",
+        "description": "This brochure provides a clear and insightful explanation of who Allah is, tailored for both Muslims and non-Muslims. It is an excellent dawah tool, aimed at educating readers about the core belief in Allah's Oneness, His attributes, and the significance of belief in Him in Islam.",
+        "image": "galaxy1.png",
+        "images": [
+            "galaxy2.png",
+            "galaxy3.png",
+            "galaxy1.png"
+        ],
+        "selections": [
+            { "quantity": 25, "price": 50 },
+            { "quantity": 50, "price": 100 },
+            { "quantity": 100, "price": 200 },
+            { "quantity": 250, "price": 300 },
+            { "quantity": 500, "price": 500 },
+            { "quantity": 1000, "price": 800 }
+        ]
+    },
+    {
+        "id": 3,
+        "category": "brochures",
+        "title": "What is Islam?",
+        "description": "An introductory brochure for anyone curious about Islam. Covering basic beliefs, practices, and the spiritual essence of Islam, this brochure serves as a handy resource for dawah efforts and personal understanding.",
+        "image": "islamfull2.jpeg",
+        "images": [
+            "islam2.jpeg",
+            "islam1.jpeg",
+            "turnislam.jpeg"
+        ],
+        "selections": [
+            { "quantity": 25, "price": 50 },
+            { "quantity": 50, "price": 100 },
+            { "quantity": 100, "price": 200 },
+            { "quantity": 250, "price": 300 },
+            { "quantity": 500, "price": 500 },
+            { "quantity": 1000, "price": 800 }
+        ]
+    }
+]
+
+
+
+  
