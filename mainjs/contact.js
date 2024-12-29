@@ -104,13 +104,13 @@ async function handleContactFormSubmit(event) {
                 <h2 style="color: #555; font-size: 18px;">Contact Information</h2>
                 <p style="font-size: 16px; margin: 5px 0;"><strong>Email:</strong> <a href="imranfaith7@gmail.com" style="color: #007bff; text-decoration: none;">imranfaith7@gmail.com</a></p>
                 <p style="font-size: 16px; margin: 5px 0;"><strong>Phone:</strong> <a href="tel:+11234567890" style="color: #007bff; text-decoration: none;">+1 (812) 850-0102</a></p>
-                <p style="font-size: 16px; margin: 5px 0;"><strong>Address:</strong> 123 Faith Avenue, City Name, Country</p>
+                
                 
                 <hr style="border: 0; border-top: 1px solid #ccc; margin: 20px 0;">
                 
                 <p style="font-size: 14px; color: #555;">Thank you for trusting us. We look forward to assisting you!</p>
                 
-                <p style="font-size: 14px; color: #555; margin-top: 20px;">Warm regards,</p>
+        
                 <p style="font-size: 14px; color: #555; font-weight: bold;">Imran Faith Team</p>
             </div>
         `
