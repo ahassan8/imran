@@ -145,7 +145,7 @@ function displayStatusMessage(message, color) {
 // Function to send email by making a POST request to the server
 async function sendEmailToServer(emailPayload) {
     try {
-        const response = await fetch("http://localhost:5000/send-email", {
+        const response = await fetch("https://api.imranfaith.com/send-email", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(emailPayload),
