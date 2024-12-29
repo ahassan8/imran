@@ -157,7 +157,7 @@ document.addEventListener("DOMContentLoaded", async function () {
                 spinner.style.display = 'block';
         
                 // Step 1: Create a Payment Intent
-                const paymentIntentResponse = await fetch('http://localhost:5000/create-payment-intent', {
+                const paymentIntentResponse = await fetch('https://api.imranfaith.com/create-payment-intent', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ amount: Math.round(totalAmount * 100) }),
