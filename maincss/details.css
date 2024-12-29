@@ -479,3 +479,39 @@ h1 {
     }
 }
 
+.quantity-select {
+    appearance: none; /* Removes default browser styles */
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    padding: 8px 12px;
+    font-size: 14px;
+    font-family: Arial, sans-serif;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #ffffff;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath fill='%23999' d='M0 0l5 6 5-6z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+    background-size: 10px 6px;
+    color: #333;
+    cursor: pointer;
+    text-align: left;
+    width: 155px; /* Adjusts the width dynamically */
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.quantity-select:hover {
+    border-color: #007bff;
+}
+
+.quantity-select:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 2px rgba(0, 123, 255, 0.5);
+}
+
+.quantity-select option {
+    padding: 5px;
+    font-size: 14px;
+}
