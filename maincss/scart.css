@@ -467,8 +467,7 @@ body {
 
     .cart-item-details {
         display: flex;
-        flex-direction: column;
-        align-items: center; /* Align items vertically in the center */
+        flex-direction: row;
         flex: 1; /* Take up the remaining space */
         justify-content: space-between;
     }
