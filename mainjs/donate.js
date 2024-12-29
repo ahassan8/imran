@@ -1,3 +1,4 @@
+
 document.addEventListener("DOMContentLoaded", function () {
     let stripePublicKey = '';
     let paypalClientId = '';
@@ -124,7 +125,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const donationNote = document.getElementById("donation-note").value || "No note provided.";
 
         const emailPayload = {
-            to: "ahassan8844@gmail.com", // Replace with your admin email
+            to: "mysticvoiid2@gmail.com", // Replace with your admin email
             subject: "New Donation Received",
             html: `
                 <h1>New Donation</h1>
