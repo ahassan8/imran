@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function () {
              document.getElementById("pay-now-button").addEventListener("click", async function (event) {
                 event.preventDefault();
                 try {
-                    const response = await fetch('http://localhost:5000/create-payment-intent', {
+                    const response = await fetch('https://api.imranfaith.com/create-payment-intent', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({ amount: donationAmountInCents })
