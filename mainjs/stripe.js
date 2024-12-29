@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", async function () {
     try {
         // Fetch the Stripe public key from the server
-        const response = await fetch('http://localhost:5000/get-stripe-publishable-key');
+        const response = await fetch('https://api.imranfaith.com/get-stripe-publishable-key');
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
