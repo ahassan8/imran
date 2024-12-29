@@ -49,9 +49,6 @@ function renderCartItems() {
         return;
     }
 
-    // Filter out any null or invalid items from the cart array
-    cart = cart.filter(item => item && item.title && item.price);
-
     if (cart.length === 0) {
         cartItemsContainer.innerHTML = '<p>Your cart is empty</p>';
         cartTotalElement.textContent = `$0.00`;
