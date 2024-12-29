@@ -111,7 +111,7 @@ function renderCartItems() {
             <img src="../images/${image}" alt="${title}" class="cart-item-image">
             <div class="cart-item-details">
                 <p class="cart-item-title">${title}</p>
-                <div>
+                <div class="quantity-div">
                 <label for="cart-quantity-select-${index}" class="quantity-label"></label>
                 <select id="cart-quantity-select-${index}" 
                         class="quantity-select" 
