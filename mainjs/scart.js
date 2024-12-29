@@ -3,6 +3,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const cartIcon = document.querySelector('.cart-icon');
     const closeCartButton = document.querySelector('.close-cart');
     const overlay = document.getElementById('overlay');
+    const FOUR_MINUTES = 4 * 60 * 1000; // 4 minutes in milliseconds
+
+    // Check and clear data if the session has expired
+    checkAndClearSession();
 
     // Initialize cart visibility from localStorage
     const isCartOpen = localStorage.getItem('cartOpen') === 'true';
@@ -28,6 +32,28 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem('cartOpen', 'false');
     }
 
+    // Clear all data and refresh the page
+    function clearAllDataAndRefresh() {
+        localStorage.clear(); // Clear all localStorage data
+        sessionStorage.clear(); // Clear sessionStorage data
+        document.body.style.overflow = 'auto'; // Reset scroll
+        location.reload(); // Force a full page refresh
+    }
+
+    // Check session expiration
+    function checkAndClearSession() {
+        const sessionStart = localStorage.getItem('sessionStart');
+        const now = Date.now();
+
+        if (!sessionStart) {
+            // If no session start time exists, set it now
+            localStorage.setItem('sessionStart', now);
+        } else if (now - sessionStart > FOUR_MINUTES) {
+            // If more than 4 minutes have passed, clear data and refresh
+            clearAllDataAndRefresh();
+        }
+    }
+
     cartIcon.addEventListener('click', toggleCartVisibility);
     closeCartButton.addEventListener('click', closeCart);
     overlay.addEventListener('click', closeCart);
@@ -48,6 +74,7 @@ function renderCartItems() {
         cartTotalElement.textContent = `$0.00`;
         return;
     }
+
 
     if (cart.length === 0) {
         cartItemsContainer.innerHTML = '<p>Your cart is empty</p>';
