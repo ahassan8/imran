@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', async function () {
     try {
         // Fetch PayPal client ID from the server
-        const response = await fetch('http://localhost:5000/get-paypal-client-id');
+        const response = await fetch('https://api.imranfaith.com/get-paypal-client-id');
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
