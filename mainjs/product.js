@@ -133,19 +133,18 @@ function redirectToDetails(productId) {
     window.location.href = `details.html?id=${productId}`;
 }
 
-// Open the cart div with a smoother transition
+// Open the cart div immediately
 function openCartDiv() {
     const cartContainer = document.getElementById('cartContainer');
     const overlay = document.getElementById('overlay');
 
     if (cartContainer && overlay) {
         overlay.style.display = 'block'; // Show the overlay
+        cartContainer.style.display = 'block'; // Show the cart container
         document.body.style.overflow = 'hidden'; // Prevent background scroll
-
-        cartContainer.style.transform = 'translateX(0)'; // Slide cart into view
-        cartContainer.style.transition = 'transform 0.3s ease-in-out'; // Smooth transition
     }
 }
+
 
 // Call fetchAndRenderProducts on page load
 fetchAndRenderProducts();
