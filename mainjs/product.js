@@ -23,6 +23,8 @@ function fetchAndRenderProducts() {
             pageHeader.classList.add('page-header');
             pageHeader.innerHTML = `
                 <p class="header-description">Browse through our collection of brochures and more to come.
+                    <br> Excellent way of 
+                        of giving dawah to your non muslim friends, coworkers, and family.
                     <br> If you have concerns or questions, don't hesitate to contact us.
                 </p>
             `;
