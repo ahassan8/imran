@@ -103,7 +103,7 @@ async function handleContactFormSubmit(event) {
                 
                 <h2 style="color: #555; font-size: 18px;">Contact Information</h2>
                 <p style="font-size: 16px; margin: 5px 0;"><strong>Email:</strong> <a href="imranfaith7@gmail.com" style="color: #007bff; text-decoration: none;">imranfaith7@gmail.com</a></p>
-                <p style="font-size: 16px; margin: 5px 0;"><strong>Phone:</strong> <a href="tel:+11234567890" style="color: #007bff; text-decoration: none;">+1 (812) 850-0102</a></p>
+                <p style="font-size: 16px; margin: 5px 0;"><strong>Phone:</strong> <a href="tel:+1 (803) 260-1982" style="color: #007bff; text-decoration: none;">+1 (803) 260-1982</a></p>
                 
                 
                 <hr style="border: 0; border-top: 1px solid #ccc; margin: 20px 0;">
