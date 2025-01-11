@@ -47,9 +47,9 @@ function renderCartItems() {
             { quantity: 25, price: 50 },
             { quantity: 50, price: 100 },
             { quantity: 100, price: 200 },
-            { quantity: 250, price: 300 },
-            { quantity: 500, price: 500 },
-            { quantity: 1000, price: 800 },
+            { quantity: 250, price: 500 },
+            { quantity: 500, price: 1000 },
+            { quantity: 1000, price: 2000 },
         ]
             .map(
                 (selection) => `
