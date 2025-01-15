@@ -22,10 +22,10 @@ function fetchAndRenderProducts() {
             const pageHeader = document.createElement('header');
             pageHeader.classList.add('page-header');
             pageHeader.innerHTML = `
-                <p class="header-description">Browse through our collection of brochures and more to come.
-                    <br> Excellent way of 
-                        of giving dawah to your non muslim friends, coworkers, and family.
-                    <br> If you have concerns or questions, don't hesitate to contact us.
+                <p class="header-description">
+                    I have added a new option where you can purchase items in person and pay in cash.
+                    Depending on how far you are from Columbia, South Carolina. <br>
+                    You can either call my phone (803-260-1982) or send a message using our contact page.
                 </p>
             `;
             mainContainer.appendChild(pageHeader);
