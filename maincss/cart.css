@@ -313,10 +313,9 @@ input[type="number"]::-webkit-outer-spin-button {
 .cart-total-container {
     background-color: #ffffff; /* Light background for contrast */
     padding: 20px;
-    border-radius: 10px; /* Rounded corners for a modern look */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-    text-align: center; /* Center-align the text */
-    margin: 20px auto; /* Space around the container */
+    border-radius: 10px; 
+    text-align: center; 
+    margin: 20px auto; 
     width: 500px;
     font-family: Arial, sans-serif;
 }
