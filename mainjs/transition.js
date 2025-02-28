@@ -1,5 +1,17 @@
 document.addEventListener('DOMContentLoaded', () => {
     const footer = document.querySelector('footer'); // Select the footer
+    const allSections = document.querySelectorAll('.middle > div'); // All section divs
+    const aboutIslamSection = document.getElementById('aboutis-section'); // About Islam section
+
+    // Hide all sections initially
+    allSections.forEach((section) => {
+        section.style.display = 'none';
+    });
+
+    // Show About Islam section as the default
+    if (aboutIslamSection) {
+        aboutIslamSection.style.display = 'block';
+    }
 
     // Hide the footer initially
     if (footer) {
@@ -14,11 +26,10 @@ document.addEventListener('DOMContentLoaded', () => {
         if (footer) {
             footer.style.display = 'block';
         }
-    }, 800); // 1.5-second delay
+    }, 800); // 0.8-second delay
 
     // Section transition for links with data-target attribute
     const sectionNavLinks = document.querySelectorAll('a[data-target]');
-    const allSections = document.querySelectorAll('.middle > div'); // All section divs
 
     sectionNavLinks.forEach((link) => {
         link.addEventListener('click', (event) => {
@@ -42,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (footer) {
                         footer.style.display = 'block';
                     }
-                }, 600); // 0.8-second delay
+                }, 600); // 0.6-second delay
             }
         });
     });
